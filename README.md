@@ -1,8 +1,8 @@
 # Punctuality
 
 ## 개  요
-**근태관리** 윈도우 프로그램 제작 ***Client*** 는 ```C# WPF```를 사용하고 ***Server***은 ```Node Js```를 사용하여 제작한다. <br>
-***Server*** 임대는 ```Azure Service```를 사용한다.
+**근태관리** 윈도우 프로그램 제작 ***Client*** 는 ```C# WPF```를 사용하고 ***Server*** 는 ```Node Js```를 사용하여 제작한다. <br>
+***Server*** 는 ```Azure Service```를 사용한다.
 
 ## 목  적
 
