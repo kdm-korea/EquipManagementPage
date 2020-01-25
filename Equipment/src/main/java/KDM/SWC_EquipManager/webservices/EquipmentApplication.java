@@ -1,4 +1,4 @@
-package KDM.Equipment.EquipManager;
+package KDM.SWC_EquipManager.webservices;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
