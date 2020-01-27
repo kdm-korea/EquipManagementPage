@@ -1,5 +1,0 @@
-spring:
-  encoding: UTF-8
-  h2:
-	console:
-      enabled: true
