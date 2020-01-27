@@ -18,7 +18,7 @@ public class User extends BaseTimeEntity{
 	@GeneratedValue
 	private Long id;
 	
-	private long studentNum;
+	private Long studentNum;
 
 	@Column(nullable = false)
 	private String name;
