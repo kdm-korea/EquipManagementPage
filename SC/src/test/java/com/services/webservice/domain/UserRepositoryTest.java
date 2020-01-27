@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserRepositoryTest {
 	
 	@Autowired
-	private UsersRepository userRepository;
+	private UserRepository userRepository;
 	
 	@AfterAll
 	public void cleanUp() {
