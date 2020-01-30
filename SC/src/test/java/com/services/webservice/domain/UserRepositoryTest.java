@@ -88,7 +88,7 @@ public class UserRepositoryTest {
 		
 		//when 
 		pcRentalLogRepository.save(PCRentalLog.builder()
-				.userId(userRepository.findByStudentNum(giveStudentNum).get(0))
+				.userId(userRepository.findByStudentNum(giveStudentNum))
 				.pcId(pcRepository.findByEquipNum(giveEquipNum).get(0))
 				.rentalTime(giveStartDate)
 				.predictReturnTime(giveEndDate)
