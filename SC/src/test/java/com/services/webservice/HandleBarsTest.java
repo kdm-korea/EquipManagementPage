@@ -14,7 +14,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-//@TestInstance(Lifecycle.PER_CLASS)
 public class HandleBarsTest {
 
 	@Autowired

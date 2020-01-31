@@ -19,13 +19,13 @@ public class UserService {
 	
 	@Transactional()
 	public ApiResponse login(UserLoginDto dto) {
-		//TODO: ¿¹¿ÜÃ³¸®
+		//TODO: ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½
 		return new ApiResponse(200, "Success", userRepository.findByStudentNum(dto.toEntity().getStudentNum())); 
 	}
 	
 	@Transactional
 	public ApiResponse signUp(UserSignUpDto dto) {
-		//TODO: ¿¹¿ÜÃ³¸®
+		//TODO: ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½
 		return new ApiResponse(200, "SignUp Success", userRepository.save(dto.toEntity()));
 	}
 }
