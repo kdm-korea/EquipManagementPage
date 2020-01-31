@@ -17,12 +17,12 @@ public class SignRestController {
 
 	private UserService userService;
 	
-	@PostMapping("/Login")
+	@PostMapping("/login")
 	public ApiResponse login(@RequestBody UserLoginDto loginDto) {
 		return userService.login(loginDto);
 	}
 	
-	@PostMapping("/signUp")
+	@PostMapping("/signup")
 	public ApiResponse signUp(@RequestBody UserSignUpDto signUpDto) {
 		return userService.signUp(signUpDto);
 	}
