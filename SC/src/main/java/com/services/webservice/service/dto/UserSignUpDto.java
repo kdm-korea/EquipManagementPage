@@ -30,4 +30,15 @@ public class UserSignUpDto {
 				.phoneNumber(phoneNumber)
 				.build();
 	}
+
+	@Builder
+	public UserSignUpDto(Long id, Long studentNum, String name, String phoneNumber) {
+		super();
+		this.id = id;
+		this.studentNum = studentNum;
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+	}
+	
+	
 }
