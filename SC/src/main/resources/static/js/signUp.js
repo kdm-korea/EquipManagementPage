@@ -9,7 +9,8 @@ var signUp = {
 			var data = {
 					name: $('#name').val(),
 					studentNum: $('#studentNum').val(),
-					phoneNumber: $('#phoneNum').val()
+					phoneNumber: $('#phoneNum').val(),
+					password: $('#password').val()
 			};
 			$.ajax({
 				type: 'POST',
