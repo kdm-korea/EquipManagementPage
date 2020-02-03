@@ -17,11 +17,6 @@ public class SignRestController {
 
 	private UserService userService;
 	
-	@PostMapping("/login")
-	public ApiResponse login(@RequestBody UserLoginDto loginDto) {
-		return userService.login(loginDto);
-	}
-	
 	@PostMapping("/signup")
 	public ApiResponse signUp(@RequestBody UserSignUpDto signUpDto) {
 		return userService.signUp(signUpDto);
