@@ -12,16 +12,21 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserLoginDto {
 
-	private Long studentNum;
+	private String studentNum;
+	
+	private String password;
 
 	@Builder
-	public UserLoginDto(Long studentNum) {
+	public UserLoginDto(String studentNum, String password) {
 		this.studentNum = studentNum;
+		this.password = password;
 	}
 	
 	public User toEntity() {
 		return User.builder()
 				.studentNum(studentNum)
+				.password(password)
 				.build();
 	}
+
 }
