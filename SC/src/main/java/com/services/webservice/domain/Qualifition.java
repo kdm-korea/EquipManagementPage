@@ -25,7 +25,6 @@ public class Qualifition {
 	@GeneratedValue
 	private Long id;
 
-	//@Column(nullable = false)
 	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_user_ida"))
 	private User userId;
