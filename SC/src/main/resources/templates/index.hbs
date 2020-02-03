@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -64,15 +64,16 @@
 		<!-- Login Form -->
 		<div class="content">
 			<p class="title">소프트웨어 콘텐츠과 기자재 관리 시스템</p>
-			<form>
+			<form action="/" method="post">
+				<input type="hidden" ht:name="${csrf.parameterName}" th:value="${_csrf.token}"/>
 				<div class="form-group">
 					<label for="loginStudentNum">학번을 입력해 주세요.</label> <input
-						type="text" class="form-control" id="loginStudentNum"
+						type="text" class="form-control" name="loginStudentNum"
 						placeholder="Student Number">
 				</div>
 				<div class="form-group">
 					<label for="loginPassword">비밀번호를 입력해 주세요.</label> <input
-						type="password" class="form-control" id="loginPassword"
+						type="password" class="form-control" name="loginPassword"
 						placeholder="Password">
 				</div>
 				<button type="submit" class="btn btn-primary" id="btn-login">Login</button>
