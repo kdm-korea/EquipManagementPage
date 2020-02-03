@@ -29,7 +29,7 @@ public class Equipment extends BaseTimeEntity {
 	@Column(nullable = false)
 	private int equipSeqNum;
 	
-	@Column(nullable = true)
+	@Column(unique = true, nullable = true)
 	private String equipNum;
 	
 	@ManyToOne(targetEntity = EquipState.class, fetch = FetchType.LAZY)
