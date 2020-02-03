@@ -44,7 +44,7 @@ public class UserService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String studentNum) throws UsernameNotFoundException {
 		com.services.webservice.domain.User userEntity = userRepository.findByStudentNum(studentNum);
 
-		List<GrantedAuthority> authorities = new ArrayList<>();
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		
 		System.out.println(userEntity.getStudentNum());
 		if ("2019631001".equals(userEntity.getStudentNum())) {
