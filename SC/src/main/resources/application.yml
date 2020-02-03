@@ -8,3 +8,7 @@ spring:
     username: sa
     password: 
     driverClassName: org.h2.Driver
+    
+    #h2 sql insert data
+    data: classpath:data-h2.sql
+    
