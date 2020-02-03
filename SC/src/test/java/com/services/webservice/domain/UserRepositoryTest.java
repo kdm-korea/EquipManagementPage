@@ -45,32 +45,32 @@ public class UserRepositoryTest {
 	public void userDataInputTest() {
 		//given
 		userRepository.save(User.builder()
-				.studentNum(2019631001)
-				.name("±èµ¿¹Î")
+				.studentNum("2019631001")
+				.name("ê¹€ë™ë¯¼")
 				.phoneNumber("01027703108")
 				.build());
 		
 		//when
-		User user = (userRepository.findByName("±èµ¿¹Î")).get(0);
+		User user = (userRepository.findByName("ê¹€ë™ë¯¼")).get(0);
 
 		//then
-		assertEquals(user.getName(), "±èµ¿¹Î");
+		assertEquals(user.getName(), "ê¹€ë™ë¯¼");
 	}
 	
 	@Test
 	@Transactional
 	public void userRentalComputerTest() {
 		
-		Long giveStudentNum = (long) 2019631001;
+		String giveStudentNum = "2019631001";
 		String giveEquipNum = "2343225";
-		String giveReason = "°úÁ¦·Î ÀÎÇÑ »ç¿ë"; 
+		String giveReason = "ì‚¬ìœ "; 
 		LocalDateTime giveStartDate = LocalDateTime.now();
 		LocalDateTime giveEndDate = LocalDateTime.now();
 		
 		//given
 		userRepository.save(User.builder()
-				.studentNum(2019631001)
-				.name("±èµ¿¹Î")
+				.studentNum("2019631001")
+				.name("ê¹€ë™ë¯¼")
 				.phoneNumber("01027703108")
 				.build());
 		
@@ -79,7 +79,7 @@ public class UserRepositoryTest {
 				.build());
 		
 		pcRepository.save(Computer.builder()
-				.className("º» 505")
+				.className("ë³¸ 505")
 				.pcSeqNum(1)
 				.equipNum("2343225")
 				.equipStateId(equipstateRepository.findAll().get(0))
