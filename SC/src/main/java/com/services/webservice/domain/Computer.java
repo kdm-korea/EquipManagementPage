@@ -29,7 +29,7 @@ public class Computer extends BaseTimeEntity {
 	@Column(nullable = false)
 	private int pcSeqNum;
 
-	@Column(nullable = false)
+	@Column(unique = true, nullable = false)
 	private String equipNum;
 
 	@ManyToOne(targetEntity = EquipState.class, fetch = FetchType.LAZY)
