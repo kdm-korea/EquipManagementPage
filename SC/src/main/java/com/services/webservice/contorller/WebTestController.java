@@ -1,12 +1,7 @@
 package com.services.webservice.contorller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import com.services.webservice.service.UserService;
-import com.services.webservice.service.dto.UserSignUpDto;
 
 import lombok.AllArgsConstructor;
 

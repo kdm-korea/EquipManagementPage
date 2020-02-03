@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.services.webservice.service.ApiResponse;
 import com.services.webservice.service.UserService;
-import com.services.webservice.service.dto.UserLoginDto;
 import com.services.webservice.service.dto.UserSignUpDto;
 
 import lombok.AllArgsConstructor;
