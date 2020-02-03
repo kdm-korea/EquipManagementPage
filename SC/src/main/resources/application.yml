@@ -11,4 +11,11 @@ spring:
     
     #h2 sql insert data
     data: classpath:data-h2.sql
+  
+  thymeleaf:
+    enabled: false
     
+handlebars:
+  suffix: .html
+  
+  
