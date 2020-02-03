@@ -1,7 +1,5 @@
 package com.services.webservice.service.dto;
 
-import javax.persistence.Column;
-
 import com.services.webservice.domain.User;
 
 import lombok.Builder;
@@ -16,7 +14,9 @@ public class UserSignUpDto {
 
 	private Long id;
 	
-	private Long studentNum;
+	private String studentNum;
+	
+	private String password;
 
 	private String name;
 
@@ -26,19 +26,18 @@ public class UserSignUpDto {
 		return User.builder()
 				.id(id)
 				.studentNum(studentNum)
+				.password(password)
 				.name(name)
 				.phoneNumber(phoneNumber)
 				.build();
 	}
 
 	@Builder
-	public UserSignUpDto(Long id, Long studentNum, String name, String phoneNumber) {
-		super();
+	public UserSignUpDto(Long id, String studentNum, String password, String name, String phoneNumber) {
 		this.id = id;
 		this.studentNum = studentNum;
+		this.password = password;
 		this.name = name;
 		this.phoneNumber = phoneNumber;
-	}
-	
-	
+	}	
 }
