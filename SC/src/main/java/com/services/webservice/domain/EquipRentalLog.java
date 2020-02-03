@@ -28,11 +28,11 @@ public class EquipRentalLog extends BaseTimeEntity {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne(targetEntity = User.class,cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity = User.class,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_user_to_equipRentalLog_id"))
 	private User userId;
 
-	@ManyToOne(targetEntity = Equipment.class, cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity = Equipment.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_equitment_id"))
 	private Equipment equipId;
 
