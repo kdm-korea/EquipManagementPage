@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -65,7 +66,7 @@
 		<div class="content">
 			<p class="title">소프트웨어 콘텐츠과 기자재 관리 시스템</p>
 			<form action="/" method="post">
-				<input type="hidden" ht:name="${csrf.parameterName}" th:value="${_csrf.token}"/>
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 				<div class="form-group">
 					<label for="loginStudentNum">학번을 입력해 주세요.</label> <input
 						type="text" class="form-control" name="loginStudentNum"

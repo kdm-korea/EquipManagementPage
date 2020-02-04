@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<metadata ="charset=UTF-8">
+<title></title>
+</head>
+<body>
+	김동민
+	<span sec:authentication="loginStudentNum"></span>번
+	
+	<br>
+
+	<a sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
+	<a sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
+	<a sec:authorize="isAnonymous()" th:href="@{/user/signup}">회원가입</a>
+</body>
+</html>
