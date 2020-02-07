@@ -46,7 +46,7 @@
 					<div class="form-group">
 						<label for="password" class="col-form-label">비밀번호를 입력해
 							주세요.</label> <input type="password" class="form-control" id="password"
-							placeholder="Password" onBlur="chkNullSignPw()">
+							placeholder="Password" onBlur="chkNullSignPw()" onkeyup="chkComparePw()">
 							<div class="form-text text-muted" id="signInPasswordChk"></div>
 					</div>
 					<div class="form-group">
