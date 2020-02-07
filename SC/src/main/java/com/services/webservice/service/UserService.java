@@ -21,6 +21,7 @@ import com.services.webservice.domain.Role;
 import com.services.webservice.domain.UserRepository;
 import com.services.webservice.service.dto.UserLoginDto;
 import com.services.webservice.service.dto.UserSignUpDto;
+import com.services.webservice.service.dto.UserStudentNumChkDto;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -31,13 +32,13 @@ public class UserService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Transactional
 	public ApiResponse signUp(UserSignUpDto userDto) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
-		return new ApiResponse(200, "Sucess", userRepository.save(userDto.toEntity()).getId()) ;
+		return new ApiResponse(200, "Sucess", userRepository.save(userDto.toEntity()).getId());
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class UserService implements UserDetailsService {
 		com.services.webservice.domain.User userEntity = userRepository.findByStudentNum(studentNum);
 
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		
+
 		System.out.println(userEntity.getStudentNum());
 		if ("2019631001".equals(userEntity.getStudentNum())) {
 			authorities.add(new SimpleGrantedAuthority(ERole.ADMIN.getValue()));
@@ -54,5 +55,18 @@ public class UserService implements UserDetailsService {
 		}
 
 		return new User(userEntity.getStudentNum(), userEntity.getPassword(), authorities);
+	}
+
+	@Transactional
+	public ApiResponse studentNumChk(UserStudentNumChkDto dto) {
+		try {
+			if (null != userRepository.findByStudentNum(dto.getStudentNum()).getStudentNum()) {
+				return new ApiResponse(300, "Fail", dto.getStudentNum());
+			} else {
+				return new ApiResponse(200, "Success", dto.getStudentNum());
+			}
+		} catch (NullPointerException e) {
+			return new ApiResponse(200, "Success", e.toString());
+		}
 	}
 }
