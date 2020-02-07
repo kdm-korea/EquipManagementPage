@@ -15,9 +15,9 @@ public class WebTestController {
 	}
 
 	// 로그인 성공 페이지
-	@GetMapping("/user/test")
-	public String loginIn() {
-		return "test";
+	@GetMapping("/user/chooseEuqip")
+	public String loginin() {
+		return "chooseEquip";
 	}
 
 	// 접근 거부 페이지
