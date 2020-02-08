@@ -2,13 +2,12 @@ package com.services.webservice.contorller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.services.webservice.service.ApiResponse;
-import com.services.webservice.service.UserService;
-import com.services.webservice.service.dto.UserSignUpDto;
-import com.services.webservice.service.dto.UserStudentNumChkDto;
+import com.services.webservice.lib.ApiResponse;
+import com.services.webservice.service.MemberService;
+import com.services.webservice.service.dto.SignUp.MemberSignUpDto;
+import com.services.webservice.service.dto.SignUp.UserStudentNumChkDto;
 
 import lombok.AllArgsConstructor;
 
@@ -16,18 +15,21 @@ import lombok.AllArgsConstructor;
 @RestController
 public class SignRestController {
 
-	private UserService userService;
+	private MemberService memberService;
 
 	@PostMapping("/signup")
-	@ResponseBody
-	public ApiResponse signUp(@RequestBody UserSignUpDto signUpDto) {
-		return userService.signUp(signUpDto);
+	public ApiResponse<Long> signUp(@RequestBody MemberSignUpDto signUpDto) {
+		if (memberService.signUp(signUpDto) == null) {
+			return new ApiResponse(200, "Fail", null);
+		}
+		return new ApiResponse(200, "Sucess", signUpDto.getStudentNum());
 	}
 
 	@PostMapping("/idChk")
-	@ResponseBody
-	public ApiResponse studentNumChk(@RequestBody UserStudentNumChkDto dto) {
-		System.out.println(dto.getStudentNum());
-		return userService.studentNumChk(dto);
+	public ApiResponse<Long> studentNumChk(@RequestBody UserStudentNumChkDto dto) {
+//		dto.getStudentNum().isEmpty()
+		// long studentNum = userService.studentNumChk(dto);
+
+		return memberService.studentNumChk(dto);
 	}
 }
