@@ -5,6 +5,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+<!-- 
+<meta name="_csrf_parameter" content="${_csrf.parameterName}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
+<meta name="_csrf" content="${_csrf.token}" />
+ -->
+
 <!-- bootstrap css -->
 <link rel="stylesheet" href="css/lib/bootstrap.min.css">
 <link rel="stylesheet" href="css/main.css">
@@ -29,31 +35,32 @@
 						<label for="name" class="col-form-label">이름을 입력해 주세요.</label> <input
 							type="text" class="form-control" id="name"
 							placeholder="Student Name" onBlur="chkSignUserName()">
-							<div class="form-text text-muted" id="signInNameChk"></div>
+						<div class="form-text text-muted" id="signInNameChk"></div>
 					</div>
 					<div class="form-group">
 						<label for="studentNum" class="col-form-label">학번을 입력해
 							주세요.</label> <input type="text" class="form-control" id="studentNum"
 							placeholder="Student Number" onBlur="chkSignStudentNum()">
-							<div class="form-text text-muted" id="signInStudentNumChk"></div>
+						<div class="form-text text-muted" id="signInStudentNumChk"></div>
 					</div>
 					<div class="form-group">
 						<label for="phoneNum" class="col-form-label">전화번호를 입력해
 							주세요.</label> <input type="text" class="form-control" id="phoneNum"
 							placeholder="Phone Number" onBlur="chkSignPhoneNum()">
-							<div class="form-text text-muted" id="signInPhoneNumChk"></div>
+						<div class="form-text text-muted" id="signInPhoneNumChk"></div>
 					</div>
 					<div class="form-group">
 						<label for="password" class="col-form-label">비밀번호를 입력해
 							주세요.</label> <input type="password" class="form-control" id="password"
-							placeholder="Password" onBlur="chkNullSignPw()" onkeyup="chkComparePw()">
-							<div class="form-text text-muted" id="signInPasswordChk"></div>
+							placeholder="Password" onBlur="chkNullSignPw()"
+							onkeyup="chkComparePw()">
+						<div class="form-text text-muted" id="signInPasswordChk"></div>
 					</div>
 					<div class="form-group">
 						<label for="passwordChk" class="col-form-label">비밀번호를 다시
 							입력해 주세요.</label> <input type="password" class="form-control"
 							id="passwordChk" placeholder="Password" onkeyup="chkComparePw()">
-							<div class="form-text text-muted" id="signInPasswordCompareChk"></div>
+						<div class="form-text text-muted" id="signInPasswordCompareChk"></div>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -82,12 +89,13 @@
 				</div>
 				<div class="form-group">
 					<label for="loginPassword">비밀번호를 입력해 주세요.</label> <input
-						type="password" class="form-control" id="loginPassword" name="loginPassword"
-						placeholder="Password">
+						type="password" class="form-control" id="loginPassword"
+						name="loginPassword" placeholder="Password">
 					<div class="form-text text-muted" id="loginPwCheck"></div>
 				</div>
 				<button type="submit" class="btn btn-primary" id="btn-login">Login</button>
-				<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#signupModal">Sign Up</button>
+				<button type="button" class="btn btn-secondary" data-toggle="modal"
+					data-target="#signupModal">Sign Up</button>
 			</form>
 		</div>
 	</div>
@@ -95,6 +103,7 @@
 	<!-- JQuery, Bootstrap -->
 	<script src="js/lib/jquery.min.js"></script>
 	<script src="js/lib/bootstrap.min.js"></script>
+	<!-- <script src="js/lib/jquery.js"></script> -->
 
 	<!-- custom js -->
 	<script src="js/signUpEffective.js"></script>
