@@ -10,6 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.services.webservice.domain.Equipment.Computer;
+import com.services.webservice.domain.Equipment.ComputerRepository;
+import com.services.webservice.domain.Equipment.EquipState;
+import com.services.webservice.domain.Equipment.EquipStateRepository;
+import com.services.webservice.domain.Member.Member;
+import com.services.webservice.domain.Member.MemberRepository;
+import com.services.webservice.domain.RentalLog.PCRentalLog;
+import com.services.webservice.domain.RentalLog.PCRentalLogRepository;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
@@ -22,7 +31,7 @@ import javax.transaction.Transactional;
 public class UserRepositoryTest {
 	
 	@Autowired
-	private UserRepository userRepository;
+	private MemberRepository userRepository;
 	
 	@Autowired
 	private ComputerRepository pcRepository;
@@ -44,14 +53,14 @@ public class UserRepositoryTest {
 	@Test
 	public void userDataInputTest() {
 		//given
-		userRepository.save(User.builder()
+		userRepository.save(Member.builder()
 				.studentNum("2019631001")
 				.name("김동민")
 				.phoneNumber("01027703108")
 				.build());
 		
 		//when
-		User user = (userRepository.findByName("김동민")).get(0);
+		Member user = (userRepository.findByName("김동민")).get(0);
 
 		//then
 		assertEquals(user.getName(), "김동민");
@@ -68,7 +77,7 @@ public class UserRepositoryTest {
 		LocalDateTime giveEndDate = LocalDateTime.now();
 		
 		//given
-		userRepository.save(User.builder()
+		userRepository.save(Member.builder()
 				.studentNum("2019631001")
 				.name("김동민")
 				.phoneNumber("01027703108")
@@ -88,7 +97,7 @@ public class UserRepositoryTest {
 		
 		//when 
 		pcRentalLogRepository.save(PCRentalLog.builder()
-				.userId(userRepository.findByStudentNum(giveStudentNum))
+				.memberId(userRepository.findByStudentNum(giveStudentNum))
 				.pcId(pcRepository.findByEquipNum(giveEquipNum).get(0))
 				.rentalTime(giveStartDate)
 				.predictReturnTime(giveEndDate)
@@ -98,7 +107,7 @@ public class UserRepositoryTest {
 		PCRentalLog pcRentalLog = pcRentalLogRepository.findAll().get(0);
 		
 		//Then
-		assertEquals(pcRentalLog.getUserId().getStudentNum(), giveStudentNum);
+		assertEquals(pcRentalLog.getMemberId().getStudentNum(), giveStudentNum);
 		assertEquals(pcRentalLog.getPcId().getEquipNum(), giveEquipNum);
 	}
 }
