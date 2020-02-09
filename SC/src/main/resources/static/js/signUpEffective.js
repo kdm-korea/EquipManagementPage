@@ -1,8 +1,8 @@
-var nameCheck = RegExp(/^[가-힣]{2,4}/);
+const nameCheck = RegExp(/^[가-힣]{2,4}/);
 
-var studentNumCheck = RegExp(/[0-9]{10}$/);
+const studentNumCheck = RegExp(/[0-9]{10}$/);
 
-var phoneNumCheck = RegExp(/[0-9]{10,11}$/);
+const phoneNumCheck = RegExp(/[0-9]{10,11}$/);
 
 function passwordDoubleCheck(pw1, pw2) {
 	if (pw1 === pw2) {
@@ -12,7 +12,7 @@ function passwordDoubleCheck(pw1, pw2) {
 	}
 }
 
-function isEmptyCheck(obj) {
+function isEmpty(obj) {
 	return (obj === '') ? true : false;
 }
 
@@ -47,7 +47,7 @@ function chkNullSignPw() {
 	var pw = document.getElementById('password');
 	var descriptMsg = document.getElementById('signInPasswordChk');
 
-	if (!isEmptyCheck(pw.value)) {
+	if (!isEmpty(pw.value)) {
 		descriptMsg.innerHTML = '';
 	} else {
 		descriptMsg.innerHTML = "* 비밀번호를 입력해주세요.";
