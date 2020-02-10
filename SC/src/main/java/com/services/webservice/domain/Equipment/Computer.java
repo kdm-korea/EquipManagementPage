@@ -1,4 +1,4 @@
-package com.services.webservice.domain;
+package com.services.webservice.domain.Equipment;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.services.webservice.domain.BaseTimeEntity;
 
 import lombok.AccessLevel;
 import lombok.Builder;
