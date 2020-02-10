@@ -1,4 +1,4 @@
-package com.services.webservice.domain;
+package com.services.webservice.domain.Member;
 
 import java.util.Set;
 
@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.services.webservice.domain.BaseTimeEntity;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Getter
-public class User extends BaseTimeEntity{
+public class Member extends BaseTimeEntity{
 	
 	@Id
 	@GeneratedValue
@@ -45,10 +47,10 @@ public class User extends BaseTimeEntity{
 	
 	@ManyToOne(targetEntity = Role.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_role_id"))
-	private Set<Role> roleId;
+	private Role roleId;
 
 	@Builder
-	public User(Long id, String studentNum, String password, String name, String phoneNumber, Set<Role> roleId) {
+	public Member(Long id, String studentNum, String password, String name, String phoneNumber, Role roleId) {
 		this.id = id;
 		this.studentNum = studentNum;
 		this.password = password;

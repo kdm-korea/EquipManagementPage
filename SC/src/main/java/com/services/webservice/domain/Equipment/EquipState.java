@@ -1,4 +1,4 @@
-package com.services.webservice.domain;
+package com.services.webservice.domain.Equipment;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

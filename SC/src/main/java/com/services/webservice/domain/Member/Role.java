@@ -1,7 +1,9 @@
-package com.services.webservice.domain;
+package com.services.webservice.domain.Member;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -19,12 +21,9 @@ public class Role {
 	private Long id;
 	
 	@Column(unique = true, nullable = false)
+//	@Enumerated(EnumType.STRING)
 	private String role;
 	
-	public void setRole(String role) {
-		this.role = role.toUpperCase();
-	}
-
 	@Builder
 	public Role(Long id, String role) {
 		this.id = id;

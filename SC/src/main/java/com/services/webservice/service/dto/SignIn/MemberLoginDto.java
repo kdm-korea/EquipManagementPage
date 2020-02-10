@@ -1,6 +1,6 @@
-package com.services.webservice.service.dto;
+package com.services.webservice.service.dto.SignIn;
 
-import com.services.webservice.domain.User;
+import com.services.webservice.domain.Member.Member;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -10,20 +10,20 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserLoginDto {
+public class MemberLoginDto {
 
 	private String studentNum;
 	
 	private String password;
 
 	@Builder
-	public UserLoginDto(String studentNum, String password) {
+	public MemberLoginDto(String studentNum, String password) {
 		this.studentNum = studentNum;
 		this.password = password;
 	}
 	
-	public User toEntity() {
-		return User.builder()
+	public Member toEntity() {
+		return Member.builder()
 				.studentNum(studentNum)
 				.password(password)
 				.build();

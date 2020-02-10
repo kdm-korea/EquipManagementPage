@@ -1,4 +1,4 @@
-package com.services.webservice.domain;
+package com.services.webservice.domain.RentalLog;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.services.webservice.domain.Member.Member;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -25,9 +27,9 @@ public class Qualifition {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-	@JoinColumn(foreignKey = @ForeignKey(name = "fk_user_ida"))
-	private User userId;
+	@ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
+	@JoinColumn(foreignKey = @ForeignKey(name = "fk_Member_ida"))
+	private Member memberId;
 
 	@Column(nullable = false)
 	private LocalDateTime limiteStartDay;
@@ -39,10 +41,10 @@ public class Qualifition {
 	private String reason;
 
 	@Builder
-	public Qualifition(Long id, User userId, LocalDateTime limiteStartDay, LocalDateTime limiteEndDay,
+	public Qualifition(Long id, Member memberId, LocalDateTime limiteStartDay, LocalDateTime limiteEndDay,
 			String reason) {
 		this.id = id;
-		this.userId = userId;
+		this.memberId = memberId;
 		this.limiteStartDay = limiteStartDay;
 		this.limiteEndDay = limiteEndDay;
 		this.reason = reason;

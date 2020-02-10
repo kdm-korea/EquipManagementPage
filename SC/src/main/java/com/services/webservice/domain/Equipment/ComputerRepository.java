@@ -1,4 +1,4 @@
-package com.services.webservice.domain;
+package com.services.webservice.domain.Equipment;
 
 import java.util.List;
 

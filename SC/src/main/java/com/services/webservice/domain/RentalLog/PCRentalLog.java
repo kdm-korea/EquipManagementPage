@@ -1,4 +1,4 @@
-package com.services.webservice.domain;
+package com.services.webservice.domain.RentalLog;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.services.webservice.domain.BaseTimeEntity;
+import com.services.webservice.domain.Equipment.Computer;
+import com.services.webservice.domain.Member.Member;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -27,9 +31,9 @@ public class PCRentalLog extends BaseTimeEntity {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_user_ide"))
-	private User userId;
+	private Member memberId;
 
 	@ManyToOne(targetEntity = Computer.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "computer_id",foreignKey = @ForeignKey(name = "fk_computer_idf"))
@@ -51,10 +55,10 @@ public class PCRentalLog extends BaseTimeEntity {
 	private boolean isOverdue;
 
 	@Builder
-	public PCRentalLog(Long id, User userId, Computer pcId, LocalDateTime rentalTime, LocalDateTime predictReturnTime,
+	public PCRentalLog(Long id, Member memberId, Computer pcId, LocalDateTime rentalTime, LocalDateTime predictReturnTime,
 			LocalDateTime realReturnTime, String reason, boolean isOverdue) {
 		this.id = id;
-		this.userId = userId;
+		this.memberId = memberId;
 		this.pcId = pcId;
 		this.rentalTime = rentalTime;
 		this.predictReturnTime = predictReturnTime;

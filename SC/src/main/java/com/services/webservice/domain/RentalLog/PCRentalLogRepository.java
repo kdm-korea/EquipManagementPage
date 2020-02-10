@@ -1,4 +1,4 @@
-package com.services.webservice.domain;
+package com.services.webservice.domain.RentalLog;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
