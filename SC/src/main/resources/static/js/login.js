@@ -20,7 +20,13 @@ var login = {
 			data : JSON.stringify(data)
 		}).done(function() {
 			alert('로그인 되었습니다.');
-		}).fail(function(error) {
+		}).fail(function(data, status, jqXHR) {
+			if(status === 'parsererror'){
+				alert('등록되지 않은 학번입니다.');	
+			}
+//			alert(JSON.stringify(data) );
+//			alert(status);
+//			alert(jqXHR);
 			alert('학번과 비밀번호를 확인해 주세요.');
 		});
 	}
