@@ -1,5 +1,6 @@
 package com.services.webservice.Security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,9 +20,13 @@ import lombok.AllArgsConstructor;
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+	
+	@Autowired
 	private MemberService memberService;
-
+	
+	@Autowired
+	private CustomAuthenticationFailhandler customAuthFailHandler;
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -30,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		// 항상 통과되어야 하는 목록들
-		web.ignoring().antMatchers("/static/**", "/css/**", "/img/**", "/js/**", "/css/lib/**", "/js/lib/**");
+		web.ignoring().antMatchers("/css/**", "/img/**", "/js/**", "/css/lib/**", "/js/lib/**");
 	}
 
 	@Override
@@ -38,12 +43,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 		// 페이지 권한설정
 //				.antMatchers("/admin/**").hasRole("ADMIN")
-//				.antMatchers("/user/myinfo").hasRole("MEMBER")
-				.antMatchers("/**").permitAll().antMatchers("/h2").permitAll().and().formLogin().loginPage("/")
-				.usernameParameter("loginStudentNum").passwordParameter("loginPassword")
+//				.antMatchers("/member/**").hasRole("MEMBER")
+				.antMatchers("/").permitAll()
+				.anyRequest().permitAll()
+				.and()
+				.formLogin()
+				.loginPage("/login")
+//				.loginProcessingUrl("/")
+				.usernameParameter("loginStudentNum")
+				.passwordParameter("loginPassword")
 
-				.defaultSuccessUrl("/user/chooseEuqip").failureUrl("/").permitAll().and().logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")).logoutSuccessUrl("/")
+				.defaultSuccessUrl("/member")
+				.failureHandler(customAuthFailHandler)
+				.failureUrl("/")
+				.permitAll().and().logout()
+				
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
 				.invalidateHttpSession(true).and().exceptionHandling().accessDeniedPage("/user/denied");
 
 		http.csrf().disable();
