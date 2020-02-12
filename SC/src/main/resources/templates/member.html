@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Dashboard Template for Bootstrap</title>
+
+<!-- Bootstrap core CSS -->
+<link href="../css/lib/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+	<nav class="navbar navbar-dark bg-dark navbar-fixed-top">
+
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<h2>
+					<a class="navbar-brand" href="#">Software Contents</a>
+				</h2>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav flex-column">
+					<li class="nav-item"><a class="nav-link active" href="#">My
+							Page</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">기자재 대여</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">컴퓨터 사용</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Q & A</a></li>
+					<li class="nav-item"><a class="nav-link"
+						sec:authorize="isAnonymous()" th:href="@{/}">로그인</a> <a
+						class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a>
+						<a class="nav-link" sec:authorize="hasRole('MEMBER')"
+						th:href="@{/user/info}">내정보</a> <a class="nav-link"
+						sec:authorize="hasRole('ADMIN')" th:href="@{/admin}">어드민</a></li>
+					<!-- 
+					<li class="nav-item"><a class="nav-link disabled" href="#"
+						tabindex="-1" aria-disabled="true">Disabled</a></li>
+						 -->
+				</ul>
+			</div>
+
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<h1 class="page-header">Dashboard</h1>
+
+				<div class="row placeholders">
+					<p>현재 내 로그 넣기</p>
+				</div>
+
+				<!-- 기기정보 넣기 -->
+				<h2 class="sub-header">Section title</h2>
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>No.</th>
+								<th>기기명</th>
+								<th>기자재번호</th>
+								<th>일련번호</th>
+								<th>상태</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>LoremLoremLoremLoremLoremLoremLoremLoremLorem</td>
+								<td>1</td>
+								<td>dolodolordolordolorr</td>
+								<td>Activation</td>
+							</tr>
+							<tr>
+								<td>1,002</td>
+								<td>amet</td>
+								<td>consectetur</td>
+								<td>adipiscing</td>
+								<td>elit</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="../js/lib/jquery.min.js"></script>
+	<script src="../js/lib/bootstrap.js"></script>
+</body>
+</html>
