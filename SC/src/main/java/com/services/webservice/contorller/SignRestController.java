@@ -18,18 +18,19 @@ public class SignRestController {
 	private MemberService memberService;
 
 	@PostMapping("/signup")
-	public ApiResponse<Long> signUp(@RequestBody MemberSignUpDto signUpDto) {
+	public ApiResponse<String> signUp(@RequestBody MemberSignUpDto signUpDto) {
 		if (memberService.signUp(signUpDto) == null) {
-			return new ApiResponse(200, "Fail", null);
+			
+			return new ApiResponse<String>(200, "Fail", "");
 		}
-		return new ApiResponse(200, "Sucess", signUpDto.getStudentNum());
+		return new ApiResponse<String>(200, "Sucess", signUpDto.getStudentNum());
 	}
 
 	@PostMapping("/idChk")
-	public ApiResponse<Long> studentNumChk(@RequestBody UserStudentNumChkDto dto) {
-//		dto.getStudentNum().isEmpty()
-		// long studentNum = userService.studentNumChk(dto);
-
-		return memberService.studentNumChk(dto);
+	public ApiResponse<String> studentNumChk(@RequestBody UserStudentNumChkDto dto) {
+		if(memberService.studentNumChk(dto)) {
+			return new ApiResponse<String>(200, "Success", dto.getStudentNum());
+		}
+		return new ApiResponse<String>(300, "Fail", "");
 	}
 }
