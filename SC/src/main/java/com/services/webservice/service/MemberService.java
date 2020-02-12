@@ -50,28 +50,24 @@ public class MemberService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String studentNum) throws UsernameNotFoundException {
-		Member memberEntity = memberRepository.findByStudentNum(studentNum);
+		Member memberEntity;
+		List<GrantedAuthority> authorities;
 
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-
-		System.out.println(memberEntity.getStudentNum());
-		if ("2019631001".equals(memberEntity.getStudentNum())) {
-			authorities.add(new SimpleGrantedAuthority(ERole.MEMBER.getValue()));
-		} else {
-			authorities.add(new SimpleGrantedAuthority(ERole.ADMIN.getValue()));
+		try {
+			memberEntity = memberRepository.findByStudentNum(studentNum);
+			authorities = new ArrayList<GrantedAuthority>();
+			authorities.add(new SimpleGrantedAuthority(memberEntity.getRoleId().getRole()));
+		} catch (Exception e) {
+			throw new UsernameNotFoundException(studentNum);
 		}
 		return new User(memberEntity.getStudentNum(), memberEntity.getPassword(), authorities);
 	}
 
-	public ApiResponse<Long> studentNumChk(UserStudentNumChkDto dto) {
+	public boolean studentNumChk(UserStudentNumChkDto dto) {
 		try {
-			if (null != memberRepository.findByStudentNum(dto.getStudentNum()).getStudentNum()) {
-				return new ApiResponse(300, "Fail", dto.getStudentNum());
-			}
-			return new ApiResponse(200, "Success", dto.getStudentNum());
-
+			return null != memberRepository.findByStudentNum(dto.getStudentNum()) ? false : true;
 		} catch (NullPointerException e) {
-			return new ApiResponse(200, "Success", e.toString());
+			return true;
 		}
 	}
 
