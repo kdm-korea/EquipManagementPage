@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.services.webservice.service.MemberService;
+import com.services.webservice.service.UserDetailServiceImpl;
 
 import lombok.AllArgsConstructor;
 
@@ -22,7 +22,7 @@ import lombok.AllArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private MemberService memberService;
+	private UserDetailServiceImpl customUserDetail;
 
 	@Autowired
 	private CustomAuthenticationFailhandler customAuthFailHandler;
@@ -61,11 +61,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(customUserDetail).passwordEncoder(passwordEncoder());
 	}
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(customUserDetail).passwordEncoder(passwordEncoder());
 	}
 }
