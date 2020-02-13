@@ -20,13 +20,13 @@ import lombok.AllArgsConstructor;
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private CustomAuthenticationFailhandler customAuthFailHandler;
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -41,23 +41,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		// 페이지 권한설정
-//				.antMatchers("/admin/**").hasRole("ADMIN")
-//				.antMatchers("/member/**").hasRole("MEMBER")
-				.antMatchers("/").permitAll()
-				.anyRequest().permitAll()
-				.and()
-				.formLogin()
-				.loginPage("/login")
+				// 페이지 권한설정
+				.antMatchers("/admin/**").hasRole("ADMIN").antMatchers("/member/**").hasRole("MEMBER").antMatchers("/")
+				.permitAll().anyRequest().permitAll().and().formLogin().loginPage("/login")
 //				.loginProcessingUrl("/")
-				.usernameParameter("loginStudentNum")
-				.passwordParameter("loginPassword")
+				.usernameParameter("loginStudentNum").passwordParameter("loginPassword")
 
 				.defaultSuccessUrl("/member")
-				.failureHandler(customAuthFailHandler)
-				.failureUrl("/")
-				.permitAll().and().logout()
-				
+//				.failureHandler(customAuthFailHandler)
+				.failureUrl("/").permitAll().and().logout()
+
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
 				.invalidateHttpSession(true).and().exceptionHandling().accessDeniedPage("/user/denied");
 
@@ -68,6 +61,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
+	}
+
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
 	}
 }
