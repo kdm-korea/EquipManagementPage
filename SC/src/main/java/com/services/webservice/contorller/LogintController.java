@@ -28,18 +28,15 @@ public class LogintController {
 
 	@PostMapping("/login")
 	public String login(MemberLoginDto dto) {
-		System.out.println();
-		System.out.println("public String login() { :::::");
-		System.out.println();
 		return "login";
 	}
 
 	@GetMapping("/logout")
 	public String logout() {
-		
+
 		return "redirect:/";
 	}
-	
+
 	@GetMapping("/member")
 	public String loginin() {
 		return "member";
