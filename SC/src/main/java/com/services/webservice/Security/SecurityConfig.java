@@ -24,9 +24,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailServiceImpl customUserDetail;
 
-	@Autowired
-	private CustomAuthenticationFailhandler customAuthFailHandler;
-
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -48,11 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().permitAll()
 				.and()
 				.formLogin().loginPage("/login")
-//				.loginProcessingUrl("/")
 				.usernameParameter("loginStudentNum").passwordParameter("loginPassword")
 
 				.defaultSuccessUrl("/member")
-//				.failureHandler(customAuthFailHandler)
 				.failureUrl("/").permitAll().and().logout()
 
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
