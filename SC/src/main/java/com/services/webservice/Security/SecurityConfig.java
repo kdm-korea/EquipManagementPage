@@ -35,15 +35,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		// 항상 통과되어야 하는 목록들
-		web.ignoring().antMatchers("/css/**", "/img/**", "/js/**", "/css/lib/**", "/js/lib/**");
+		web.ignoring().antMatchers("/css/**", "/img/**", "/js/**");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				// 페이지 권한설정
-				.antMatchers("/admin/**").hasRole("ADMIN").antMatchers("/member/**").hasRole("MEMBER").antMatchers("/")
-				.permitAll().anyRequest().permitAll().and().formLogin().loginPage("/login")
+				.antMatchers("/admin/**").hasRole("ADMIN")
+				.antMatchers("/member/**").hasRole("MEMBER")
+				.antMatchers("/").permitAll()
+				.anyRequest().permitAll()
+				.and()
+				.formLogin().loginPage("/login")
 //				.loginProcessingUrl("/")
 				.usernameParameter("loginStudentNum").passwordParameter("loginPassword")
 
@@ -52,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.failureUrl("/").permitAll().and().logout()
 
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
-				.invalidateHttpSession(true).and().exceptionHandling().accessDeniedPage("/user/denied");
+				.invalidateHttpSession(true).and().exceptionHandling().accessDeniedPage("/denied");
 
 		http.csrf().disable();
 
