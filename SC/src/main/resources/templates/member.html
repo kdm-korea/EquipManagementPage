@@ -38,10 +38,11 @@
 					<li class="nav-item"><a class="nav-link" href="#">Q & A</a></li>
 					<li class="nav-item"><a class="nav-link"
 						sec:authorize="isAnonymous()" th:href="@{/}">로그인</a> <a
-						class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a>
-						<a class="nav-link" sec:authorize="hasRole('ROLE_MEMBER')"
-						th:href="@{/user/info}">내정보</a> <a class="nav-link"
-						sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}">어드민</a></li>
+						class="nav-link" sec:authorize="isAuthenticated()"
+						th:href="@{/logout}">로그아웃</a> <a class="nav-link"
+						sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/user/info}">내정보</a>
+						<a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')"
+						th:href="@{/admin}">어드민</a></li>
 					<!-- 
 					<li class="nav-item"><a class="nav-link disabled" href="#"
 						tabindex="-1" aria-disabled="true">Disabled</a></li>
@@ -84,6 +85,15 @@
 								<td>adipiscing</td>
 								<td>elit</td>
 							</tr>
+							<!-- 
+							<tr th:each="equip : ${equiplist}">
+								<td th:text=${equip.equipName}"></td>
+								<td th:text=${equip.equipSeqNum}"></td>
+								<td th:text=${equip.equipNum}"></td>
+								<td th:text=${equip.equipState}"></td>
+								<td th:text=${equip.isAvailable}"></td>
+							</tr>
+							 -->
 						</tbody>
 					</table>
 				</div>
