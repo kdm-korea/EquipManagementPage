@@ -3,12 +3,11 @@ package com.services.webservice.service;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.services.webservice.domain.ERole;
 import com.services.webservice.domain.Member.MemberRepository;
-import com.services.webservice.domain.Member.Role;
 import com.services.webservice.domain.Member.RoleRepository;
 import com.services.webservice.service.dto.SignUp.MemberSignUpDto;
 import com.services.webservice.service.dto.SignUp.UserStudentNumChkDto;
@@ -21,16 +20,16 @@ public class MemberService {
 
 	@Autowired
 	private RoleRepository roleRepository;
-	
+
 	@Autowired
 	private MemberRepository memberRepository;
-	
-	public Long signUp(MemberSignUpDto userDto) {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	public Long signUp(MemberSignUpDto userDto) {
 		userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
-		Role userRole = roleRepository.findByRole(ERole.MEMBER.getValue());
-		userDto.setRoleId(userRole);
+		userDto.setRoleId(roleRepository.findByRole(ERole.MEMBER.getValue()));
 
 		return createMember(userDto);
 	}
