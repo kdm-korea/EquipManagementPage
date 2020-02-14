@@ -34,7 +34,7 @@ public class Equipment extends BaseTimeEntity {
 	@Column(unique = true, nullable = true)
 	private String equipNum;
 	
-	@ManyToOne(targetEntity = EquipState.class, fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity = EquipState.class, fetch = FetchType.EAGER)
 	@JoinColumn(name = "equipState_id", foreignKey = @ForeignKey(name = "fk_equipment_to_equipState_id"))
 	private EquipState equipStateId;
 	
