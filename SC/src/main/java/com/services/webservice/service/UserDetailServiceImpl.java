@@ -1,25 +1,14 @@
 package com.services.webservice.service;
 
-import java.util.ArrayList;
-
-import javax.transaction.Transactional;
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
-import com.services.webservice.service.dto.SignUp.MemberSignUpDto;
-import com.services.webservice.service.dto.SignUp.UserStudentNumChkDto;
 import com.services.webservice.Security.SecurityMember;
-import com.services.webservice.domain.ERole;
 import com.services.webservice.domain.Member.Member;
 import com.services.webservice.domain.Member.MemberRepository;
-import com.services.webservice.domain.Member.Role;
-import com.services.webservice.domain.Member.RoleRepository;
 
 import lombok.AllArgsConstructor;
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -71,29 +71,13 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>LoremLoremLoremLoremLoremLoremLoremLoremLorem</td>
-								<td>1</td>
-								<td>dolodolordolordolorr</td>
-								<td>Activation</td>
-							</tr>
-							<tr>
-								<td>1,002</td>
-								<td>amet</td>
-								<td>consectetur</td>
-								<td>adipiscing</td>
-								<td>elit</td>
-							</tr>
-							<!-- 
 							<tr th:each="equip : ${equiplist}">
-								<td th:text=${equip.equipName}"></td>
-								<td th:text=${equip.equipSeqNum}"></td>
-								<td th:text=${equip.equipNum}"></td>
-								<td th:text=${equip.equipState}"></td>
-								<td th:text=${equip.isAvailable}"></td>
+								<td th:text="${equip.squNum}"></td>
+								<td th:text="${equip.equipName}"></td>
+								<td th:text="${equip.equipSeqNum}"></td>
+								<td th:text="${equip.equipNum}"></td>
+								<td th:text="${equip.equipState}"></td>
 							</tr>
-							 -->
 						</tbody>
 					</table>
 				</div>

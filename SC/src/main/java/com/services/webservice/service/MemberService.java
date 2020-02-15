@@ -30,7 +30,6 @@ public class MemberService {
 	public Long signUp(MemberSignUpDto userDto) {
 		userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 		userDto.setRoleId(roleRepository.findByRole(ERole.MEMBER.getValue()));
-
 		return createMember(userDto);
 	}
 
