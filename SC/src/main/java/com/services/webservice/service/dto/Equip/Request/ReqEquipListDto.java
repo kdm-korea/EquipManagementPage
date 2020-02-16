@@ -1,4 +1,4 @@
-package com.services.webservice.service.dto.Equip;
+package com.services.webservice.service.dto.Equip.Request;
 
 import com.services.webservice.domain.Equipment.EquipState;
 import com.services.webservice.domain.Equipment.Equipment;
