@@ -1,15 +1,14 @@
-package com.services.webservice.service.dto.Equip;
+package com.services.webservice.service.dto.Equip.Response;
 
-import com.services.webservice.domain.Equipment.EquipState;
 import com.services.webservice.domain.Equipment.Equipment;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 public class ResEquipListDto {
+
+	private long squNum = 1;
 
 	private String equipName;
 
@@ -19,14 +18,12 @@ public class ResEquipListDto {
 
 	private String equipState;
 
-	private boolean isAvailable;
-
 	@Builder
 	public ResEquipListDto(Equipment equip) {
+		this.squNum = equip.getId() + 1;
 		this.equipName = equip.getEquipName();
 		this.equipSeqNum = equip.getEquipSeqNum();
 		this.equipNum = equip.getEquipNum();
 		this.equipState = equip.getEquipStateId().getState();
-		this.isAvailable = equip.isAvailable();
 	}
 }
