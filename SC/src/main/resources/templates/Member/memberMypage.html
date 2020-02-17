@@ -15,7 +15,6 @@
 <link href="../css/lib/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
 	<nav class="navbar navbar-dark bg-dark navbar-fixed-top">
 
 		<div class="container-fluid">
@@ -31,11 +30,11 @@
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav flex-column">
-					<li class="nav-item"><a class="nav-link active" href="#">My
+					<li class="nav-item"><a class="nav-link active" href="memberMypage">My
 							Page</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">기자재 대여</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">컴퓨터 사용</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Q & A</a></li>
+					<li class="nav-item"><a class="nav-link" href="memberEquipRent">기자재 대여</a></li>
+					<li class="nav-item"><a class="nav-link" href="memberComputerRent">컴퓨터 사용</a></li>
+					<li class="nav-item"><a class="nav-link" href="memberQABoard">Q & A</a></li>
 					<li class="nav-item"><a class="nav-link"
 						sec:authorize="isAnonymous()" th:href="@{/}">로그인</a> <a
 						class="nav-link" sec:authorize="isAuthenticated()"
@@ -60,7 +59,7 @@
 				<!-- 기기정보 넣기 -->
 				<h2 class="sub-header">Section title</h2>
 				<div class="table-responsive">
-					<table class="table table-striped">
+					<table class="table table-striped table-hover" id="equipPossibleList">
 						<thead>
 							<tr>
 								<th>No.</th>
@@ -87,5 +86,6 @@
 
 	<script src="../js/lib/jquery.min.js"></script>
 	<script src="../js/lib/bootstrap.js"></script>
+	<script src="../js/member/equipView.js"></script>
 </body>
 </html>
