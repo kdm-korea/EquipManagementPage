@@ -31,7 +31,7 @@ const signUp = {
 		}).done(function(data, status, jqXHR) {
 
 			if (data.message == "Success") {
-				signUp.save();
+				signUp.chkSignUpInfo();
 			} else {
 				alert('이미 가입한 이력이 있는 학번입니다.');
 			}
@@ -40,6 +40,23 @@ const signUp = {
 		});
 	},
 
+	chkSignUpInfo : function(){
+		const data = {
+				name : $('#name').val(),
+				studentNum : $('#studentNum').val(),
+				phoneNumber : $('#phoneNum').val(),
+				password : $('#password').val()				
+		};
+		
+		if(data.name === '' || data.studentNum === '' || data.phoneNumber === '' || data.password === ''){
+			alert('정보를 입력해 주세요.');
+		}
+		else{
+			signUp.save();
+		}
+		
+	},
+	
 	save : function() {
 		const jsonData = {
 			name : $('#name').val(),
