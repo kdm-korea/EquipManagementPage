@@ -39,13 +39,13 @@ function chkSignStudentNum() {
 }
 
 function chkSignPhoneNum() {
-	ruleCheck(document.getElementById('phoneNum'), studentNumCheck, '전화번호',
+	ruleCheck(document.getElementById('phoneNum'), phoneNumCheck, '전화번호',
 			document.getElementById('signInPhoneNumChk'));
 }
 
 function chkNullSignPw() {
-	var pw = document.getElementById('password');
-	var descriptMsg = document.getElementById('signInPasswordChk');
+	let pw = document.getElementById('password');
+	let descriptMsg = document.getElementById('signInPasswordChk');
 
 	if (!isEmpty(pw.value)) {
 		descriptMsg.innerHTML = '';
@@ -56,9 +56,9 @@ function chkNullSignPw() {
 }
 
 function chkComparePw() {
-	var pw = document.getElementById('password');
-	var pwChk = document.getElementById('passwordChk');
-	var descriptMsg = document.getElementById('signInPasswordCompareChk');
+	let pw = document.getElementById('password');
+	let pwChk = document.getElementById('passwordChk');
+	let descriptMsg = document.getElementById('signInPasswordCompareChk');
 
 	if (pw.value === pwChk.value) {
 		descriptMsg.innerHTML = '';
