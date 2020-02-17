@@ -18,7 +18,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.services.webservice.domain.Equipment.Equipment;
 import com.services.webservice.domain.Equipment.EquipmentRepository;
-import com.services.webservice.service.dto.Equip.ResEquipListDto;
+import com.services.webservice.service.dto.Equip.Response.ResEquipListDto;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
