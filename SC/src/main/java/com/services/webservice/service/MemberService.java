@@ -27,7 +27,7 @@ public class MemberService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	public Long signUp(MemberSignUpDto userDto) {
+	public String signUp(MemberSignUpDto userDto) {
 		userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 		userDto.setRoleId(roleRepository.findByRole(ERole.MEMBER.getValue()));
 		return createMember(userDto);
@@ -42,7 +42,7 @@ public class MemberService {
 	}
 
 	@Transactional
-	private Long createMember(MemberSignUpDto userDto) {
-		return memberRepository.save(userDto.toEntity()).getId();
+	private String createMember(MemberSignUpDto userDto) {
+		return memberRepository.save(userDto.toEntity()).getStudentNum();
 	}
 }
