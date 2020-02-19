@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.services.webservice.service.UserDetailServiceImpl;
@@ -45,8 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().permitAll()
 				.and()
 				.formLogin().loginPage("/login")
+//				.fail
 				.usernameParameter("loginStudentNum").passwordParameter("loginPassword")
-
+				
 				.defaultSuccessUrl("/memeber/mypage")
 				.failureUrl("/").permitAll().and().logout()
 
@@ -60,11 +62,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(customUserDetail).passwordEncoder(passwordEncoder());
-	}
-
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(customUserDetail).passwordEncoder(passwordEncoder());
 	}
 }
