@@ -7,6 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.services.webservice.domain.ERole;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,11 +23,11 @@ public class Role {
 	private Long id;
 	
 	@Column(unique = true, nullable = false)
-//	@Enumerated(EnumType.STRING)
-	private String role;
+	@Enumerated(EnumType.STRING)
+	private ERole role;
 	
 	@Builder
-	public Role(Long id, String role) {
+	public Role(Long id, ERole role) {
 		this.id = id;
 		this.role = role;
 	}	
