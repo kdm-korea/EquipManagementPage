@@ -24,7 +24,6 @@ import com.services.webservice.service.dto.SignUp.MemberSignUpDto;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.transaction.Transactional;
 
