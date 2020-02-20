@@ -1,5 +1,6 @@
 package com.services.webservice.contorller.SignInUp;
 
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,11 +20,12 @@ public class SignRestController {
 
 	@PostMapping("/signup")
 	public ApiResponse<String> signUp(@RequestBody MemberSignUpDto signUpDto) {
-		if (memberService.signUp(signUpDto) == null) {
-			
+//		if ( == null) {			
+		if (ObjectUtils.isEmpty(signUpDto)) {
 			return new ApiResponse<String>(200, "Fail", "");
 		}
-		return new ApiResponse<String>(200, "Sucess", signUpDto.getStudentNum());
+//		memberService.signUp(signUpDto);
+		return new ApiResponse<String>(200, "Sucess", memberService.signUp(signUpDto));
 	}
 
 	@PostMapping("/idChk")
