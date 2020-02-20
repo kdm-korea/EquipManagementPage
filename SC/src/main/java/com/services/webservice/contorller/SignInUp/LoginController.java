@@ -16,12 +16,6 @@ public class LoginController {
 	public String main() {
 		return "index";
 	}
-
-//	@PostMapping("login")
-//	public void login(HttpSession session) {
-//		System.out.println("============================");
-//		session.setAttribute("studentNum", "2019631001");
-//	}
 	
 	@GetMapping("/logout")
 	public String logout() {
