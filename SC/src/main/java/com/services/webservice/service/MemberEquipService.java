@@ -15,7 +15,7 @@ import com.services.webservice.domain.Equipment.EquipmentRepository;
 import com.services.webservice.domain.Member.Member;
 import com.services.webservice.domain.Member.MemberRepository;
 import com.services.webservice.domain.RentalLog.EquipRentalLogRepository;
-import com.services.webservice.service.dto.Equip.Request.RepEquipRentalDto;
+import com.services.webservice.service.dto.Equip.Request.ReqEquipRentalDto;
 import com.services.webservice.service.dto.Equip.Response.ResEquipListDto;
 import com.services.webservice.service.dto.Equip.Save.SaveEquipRentalDto;
 
@@ -44,7 +44,7 @@ public class MemberEquipService {
 				.collect(Collectors.toList());
 	}
 
-	public void isRentalEquip(RepEquipRentalDto dto) throws NullPointerException {
+	public void isRentalEquip(ReqEquipRentalDto dto) throws NullPointerException {
 //		String studentNum = ((SecurityMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal())
 //				.getUsername();
 		
@@ -59,7 +59,7 @@ public class MemberEquipService {
 	}
 
 	@Transactional
-	private void saveEquipmentRentalLog(RepEquipRentalDto dto) throws NullPointerException{
+	private void saveEquipmentRentalLog(ReqEquipRentalDto dto) throws NullPointerException{
 		//1. 사람이 있는지
 		Member member = memberRepo.findByStudentNum(dto.getStudentNum());
 
