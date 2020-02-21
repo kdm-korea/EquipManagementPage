@@ -29,10 +29,10 @@ public class Equipment extends BaseTimeEntity {
 	@Column(length = 50, nullable = false)
 	private String equipName;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private int equipSeqNum;
 	
-	@Column(unique = true, nullable = true)
+	@Column(unique = true, nullable = false)
 	private String equipNum;
 	
 	@Setter
