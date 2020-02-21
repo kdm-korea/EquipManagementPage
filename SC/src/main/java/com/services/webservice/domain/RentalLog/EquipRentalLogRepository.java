@@ -15,9 +15,9 @@ public interface EquipRentalLogRepository extends JpaRepository<EquipRentalLog, 
 //							+ "where select * from Equipment "
 //												+ "where equipNum=:equipNum")
 	
-	@Modifying
+//	@Modifying
 	@Transactional
-	@Query(value = "Select count(p) from EquipRentalLog p "
+	@Query("Select count(p) from EquipRentalLog p "
 			+ "where p.equipId.equipName = :equipName and p.memberId.studentNum = :studentNum")
-	Long findByMemberRentalSameEquip(@Param("studentNum") String studentNum, @Param("equipName") String equipName);
+	int findByMemberRentalSameEquip(@Param("studentNum") String studentNum, @Param("equipName") String equipName);
 }
