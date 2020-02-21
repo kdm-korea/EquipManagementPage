@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.services.webservice.lib.ApiResponse;
-import com.services.webservice.service.MemberService;
+import com.services.webservice.service.MemberService.SignInUpService.MemberService;
 import com.services.webservice.service.dto.SignUp.MemberSignUpDto;
 import com.services.webservice.service.dto.SignUp.UserStudentNumChkDto;
 

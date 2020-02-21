@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.services.webservice.service.MemberEquipService;
+import com.services.webservice.service.MemberService.EquipService.MemberEquipService;
 import com.services.webservice.service.dto.Equip.Request.ReqEquipRentalDto;
 
 import lombok.AllArgsConstructor;

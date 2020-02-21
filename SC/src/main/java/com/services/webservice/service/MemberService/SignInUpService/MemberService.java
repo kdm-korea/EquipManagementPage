@@ -1,4 +1,4 @@
-package com.services.webservice.service;
+package com.services.webservice.service.MemberService.SignInUpService;
 
 import javax.transaction.Transactional;
 

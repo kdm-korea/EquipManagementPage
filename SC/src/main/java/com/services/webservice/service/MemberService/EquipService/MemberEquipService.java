@@ -1,4 +1,4 @@
-package com.services.webservice.service;
+package com.services.webservice.service.MemberService.EquipService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -83,6 +83,7 @@ public class MemberEquipService {
 	}
 	
 	public boolean isReturnEquip() {
+//		렌탈 반납
 		return false;
 	}
 

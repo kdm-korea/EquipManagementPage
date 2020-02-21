@@ -1,4 +1,4 @@
-package com.services.webservice.service;
+package com.services.webservice.service.MemberService.SignInUpService;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
