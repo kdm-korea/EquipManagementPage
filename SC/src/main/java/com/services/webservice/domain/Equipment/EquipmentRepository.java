@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import com.services.webservice.domain.EState;
 
 public interface EquipmentRepository extends JpaRepository<Equipment, Long>{
-	@Modifying
+//	@Modifying
 	@Query("SELECT p " +
             "FROM Equipment p " +
 			"WHERE p.isAvailable = 'true'"+
