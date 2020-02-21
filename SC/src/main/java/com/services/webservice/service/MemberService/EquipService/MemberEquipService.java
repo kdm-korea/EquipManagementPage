@@ -44,7 +44,7 @@ public class MemberEquipService {
 				.collect(Collectors.toList());
 	}
 
-	public void isRentalEquip(ReqEquipRentalDto dto) throws NullPointerException {
+	public void executeEquipRental(ReqEquipRentalDto dto) throws NullPointerException {
 //		String studentNum = ((SecurityMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal())
 //				.getUsername();
 		// 이 사람이 이 물건과 같은 물건을 빌린 적이 있는지
