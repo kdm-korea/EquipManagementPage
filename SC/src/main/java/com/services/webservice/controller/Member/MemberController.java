@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.services.webservice.service.MemberService.MemberInfo;
 import com.services.webservice.service.MemberService.EquipService.MemberEquipService;
 import com.services.webservice.service.dto.Equip.Request.ReqEquipRentalDto;
 
@@ -20,35 +21,52 @@ public class MemberController {
 
 	private MemberEquipService memberEquipService;
 
+	private MemberInfo memberInfo;
+
+	@GetMapping("/computer")
+	public String computer() {
+		return "Member/memberComputer";
+	}
+	
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "Member/memberMypage";
+	}
+
+	@GetMapping("/board")
+	public String boardQA() {
+		return "Member/memberQABoard";
+	}
+
 	@GetMapping("/equip")
 	public String resMemberMypage(HttpSession session, Model model) {
-		if(session != null) {
+		if (session != null) {
 			model.addAttribute("equiplist", memberEquipService.selectEuqipList());
+			model.addAttribute("memberInfo", memberInfo.findByMemeberInfo());
 		}
-		return "Member/memberEquipRent";
+		return "Member/memberEquip";
 	}
-	
+
 	@PostMapping("/equip/rent")
-	public String memberEquipRent(ReqEquipRentalDto dto, Model model) {
-		
+	public String memberEquipRent(HttpSession session, ReqEquipRentalDto dto, Model model) {
+		memberEquipService.executeEquipRental(dto);
 		return "";
 	}
-	
+
 	@GetMapping("/equiprent")
 	public String memberEquip(Model model) {
-		
+
 		return "";
 	}
-	
+
 	@GetMapping("/computerRent")
 	public String memberComputer(Model model) {
-		
+
 		return "";
 	}
-	
+
 	@GetMapping("/QABoard")
 	public String memberQABoard(Model model) {
 		return "";
 	}
 }
-
