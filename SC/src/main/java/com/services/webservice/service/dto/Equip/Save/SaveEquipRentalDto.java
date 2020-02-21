@@ -43,10 +43,11 @@ public class SaveEquipRentalDto {
 		return EquipRentalLog.builder()
 				.memberId(memberId)
 				.equipId(equipId)
-				.isOverdue(false)
-				.realReturnTime(null)
 				.rentalTime(realReturnTime)
 				.predictReturnTime(predictReturnTime)
+				.realReturnTime(null)
+				.isOverdue(false)
+				.realReturnTime(null)
 				.reason(reason)
 				.build();
 	}
