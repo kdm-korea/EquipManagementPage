@@ -20,11 +20,9 @@ public class SignRestController {
 
 	@PostMapping("/signup")
 	public ApiResponse<String> signUp(@RequestBody MemberSignUpDto signUpDto) {
-//		if ( == null) {			
 		if (ObjectUtils.isEmpty(signUpDto)) {
 			return new ApiResponse<String>(200, "Fail", "");
 		}
-//		memberService.signUp(signUpDto);
 		return new ApiResponse<String>(200, "Sucess", memberService.signUp(signUpDto));
 	}
 

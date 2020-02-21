@@ -18,7 +18,11 @@ public class MemberInfo {
 	private MemberRepository memberRepo;
 	
 	public ResMemberInfoDto findByMemeberInfo() throws NullPointerException {
-		String studentNum = ((UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+		String studentNum = ((UserDetails)SecurityContextHolder
+				.getContext()
+				.getAuthentication()
+				.getPrincipal())
+				.getUsername();
 		return new ResMemberInfoDto(memberRepo.findByStudentNum(studentNum));
 	}
 }
