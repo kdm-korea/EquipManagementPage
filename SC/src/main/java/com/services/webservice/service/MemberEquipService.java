@@ -47,9 +47,8 @@ public class MemberEquipService {
 	public void isRentalEquip(ReqEquipRentalDto dto) throws NullPointerException {
 //		String studentNum = ((SecurityMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal())
 //				.getUsername();
-		
 		// 이 사람이 이 물건과 같은 물건을 빌린 적이 있는지
-		if (equipLogRepo.findByMemberRentalSameEquip(dto.getEquipName(), dto.getEquipName()) > 0) {
+		if (equipLogRepo.findByMemberRentalSameEquip(dto.getStudentNum(), dto.getEquipName()) > 0) {
 			// Message: 이미 같은 기자재를 빌리는 중입니다.		
 		} 
 		else {
@@ -60,27 +59,27 @@ public class MemberEquipService {
 
 	@Transactional
 	private void saveEquipmentRentalLog(ReqEquipRentalDto dto) throws NullPointerException{
-		//1. 사람이 있는지
-		Member member = memberRepo.findByStudentNum(dto.getStudentNum());
-
-		//2. 있는 물건인지 & 물건상태는 어떤지
-		Equipment equipment = equipRepo.findByEquipNum(dto.getEquipNum());
-
-		//3. 기자재 렌탈 테이블에 정보 저장
-		equipLogRepo.save(SaveEquipRentalDto.builder()
-				.memberId(member)
-				.equipId(equipment)
-				.rentalTime(dto.getRentalTime())
-				.predictReturnTime(dto.getPredictReturnTime())
-				.reason(dto.getReason())
-				.build()
-				.toEntity());
-		
-		//기자재 테이블에 저장중 업데이트
-		Equipment equip = equipRepo.findByEquipNum(dto.getEquipNum());
-		equip.setAvailable(false);
-		equip.setEquipStateId(equipStateRepository.findByState(EState.USE.getValue()));
-		equipRepo.save(equip);
+			//1. 사람이 있는지
+			Member member = memberRepo.findByStudentNum(dto.getStudentNum());
+			
+			//2. 있는 물건인지 & 물건상태는 어떤지
+			Equipment equipment = equipRepo.findByEquipNum(dto.getEquipNum());
+			
+			//3. 기자재 렌탈 테이블에 정보 저장
+			equipLogRepo.save(SaveEquipRentalDto.builder()
+					.memberId(member)
+					.equipId(equipment)
+					.rentalTime(dto.getRentalTime())
+					.predictReturnTime(dto.getPredictReturnTime())
+					.reason(dto.getReason())
+					.build()
+					.toEntity());
+			
+			//기자재 테이블에 렌탈여부 업데이트
+			Equipment equip = equipRepo.findByEquipNum(dto.getEquipNum());
+			equip.setAvailable(false);
+			equip.setEquipStateId(equipStateRepository.findByState(EState.USE.getValue()));
+			equipRepo.save(equip);
 	}
 	
 	public boolean isReturnEquip() {
