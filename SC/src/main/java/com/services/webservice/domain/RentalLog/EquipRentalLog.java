@@ -32,18 +32,18 @@ public class EquipRentalLog extends BaseTimeEntity {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne(targetEntity = Member.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(foreignKey = @ForeignKey(name = "fk_Member_to_equipRentalLog_id"))
+	@ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
+	@JoinColumn(updatable = false, insertable = false, foreignKey = @ForeignKey(name = "fk_Member_to_equipRentalLog_id"))
 	private Member memberId;
 
-	@ManyToOne(targetEntity = Equipment.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(foreignKey = @ForeignKey(name = "fk_equitment_id"))
+	@ManyToOne(targetEntity = Equipment.class, fetch = FetchType.LAZY)
+	@JoinColumn(updatable = false, insertable = false, foreignKey = @ForeignKey(name = "fk_equitment_id"))
 	private Equipment equipId;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private LocalDateTime rentalTime;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private LocalDateTime predictReturnTime;
 
 	@Column(nullable = true)
