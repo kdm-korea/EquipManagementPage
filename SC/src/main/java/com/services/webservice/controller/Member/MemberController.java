@@ -1,4 +1,4 @@
-package com.services.webservice.contorller.Member;
+package com.services.webservice.controller.Member;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,15 +20,15 @@ public class MemberController {
 
 	private MemberEquipService memberEquipService;
 
-	@GetMapping("/mypage")
+	@GetMapping("/equip")
 	public String resMemberMypage(HttpSession session, Model model) {
 		if(session != null) {
 			model.addAttribute("equiplist", memberEquipService.selectEuqipList());
 		}
-		return "Member/memberMypage";
+		return "Member/memberEquipRent";
 	}
 	
-	@PostMapping("/equiprent/rent")
+	@PostMapping("/equip/rent")
 	public String memberEquipRent(ReqEquipRentalDto dto, Model model) {
 		
 		return "";

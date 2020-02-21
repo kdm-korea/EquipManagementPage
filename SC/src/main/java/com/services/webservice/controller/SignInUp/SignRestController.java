@@ -1,4 +1,4 @@
-package com.services.webservice.contorller.SignInUp;
+package com.services.webservice.controller.SignInUp;
 
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,4 +1,4 @@
-package com.services.webservice.contorller;
+package com.services.webservice.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

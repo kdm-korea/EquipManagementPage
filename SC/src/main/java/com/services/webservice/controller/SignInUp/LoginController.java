@@ -1,4 +1,4 @@
-package com.services.webservice.contorller.SignInUp;
+package com.services.webservice.controller.SignInUp;
 
 import javax.servlet.http.HttpSession;
 
