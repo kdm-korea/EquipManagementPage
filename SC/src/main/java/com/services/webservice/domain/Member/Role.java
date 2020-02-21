@@ -23,11 +23,10 @@ public class Role {
 	private Long id;
 	
 	@Column(unique = true, nullable = false)
-	@Enumerated(EnumType.STRING)
-	private ERole role;
+	private String role;
 	
 	@Builder
-	public Role(Long id, ERole role) {
+	public Role(Long id, String role) {
 		this.id = id;
 		this.role = role;
 	}	
