@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import com.services.webservice.domain.BaseTimeEntity;
 
 import lombok.AccessLevel;
@@ -35,13 +37,12 @@ public class Equipment extends BaseTimeEntity {
 	@Column(unique = true, nullable = false)
 	private String equipNum;
 	
-	@Setter
 	@ManyToOne(targetEntity = EquipState.class, fetch = FetchType.EAGER)
 	@JoinColumn(name = "equipState_id", foreignKey = @ForeignKey(name = "fk_equipment_to_equipState_id"))
 	private EquipState equipStateId;
 	
-	@Setter
 	@Column(columnDefinition = "boolean")
+	@ColumnDefault("true")
 	private boolean isAvailable;
 	
 	@Column(columnDefinition = "TEXT", nullable = true)
