@@ -20,7 +20,7 @@ public class ResEquipListDto {
 
 	@Builder
 	public ResEquipListDto(Equipment equip) {
-		this.squNum = equip.getId() + 1;
+		this.squNum = equip.getId();
 		this.equipName = equip.getEquipName();
 		this.equipSeqNum = equip.getEquipSeqNum();
 		this.equipNum = equip.getEquipNum();
