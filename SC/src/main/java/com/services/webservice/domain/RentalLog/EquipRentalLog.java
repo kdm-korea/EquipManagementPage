@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import com.services.webservice.domain.BaseTimeEntity;
 import com.services.webservice.domain.Equipment.Equipment;
 import com.services.webservice.domain.Member.Member;
@@ -50,6 +52,7 @@ public class EquipRentalLog extends BaseTimeEntity {
 	private LocalDateTime realReturnTime;
 
 	@Column(columnDefinition = "boolean")
+	@ColumnDefault("false")
 	private boolean isOverdue;
 
 	@Column(columnDefinition = "TEXT", nullable = true)
