@@ -1,6 +1,7 @@
 package com.services.webservice.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.services.webservice.service.MemberService.SignInUpService.UserDetailServiceImpl;
@@ -29,6 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
+	@Bean
+	public ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
+		return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(new HttpSessionEventPublisher());
+	}
+	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		// 항상 통과되어야 하는 목록들
@@ -43,16 +50,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/member/**").hasRole("MEMBER")
 				.antMatchers("/").permitAll()
 				.anyRequest().permitAll()
-				.and()
+			.and()
 				.formLogin().loginPage("/login")
 //				.fail
-				.usernameParameter("loginStudentNum").passwordParameter("loginPassword")
-				
+				.usernameParameter("loginStudentNum")
+				.passwordParameter("loginPassword")
 				.defaultSuccessUrl("/memeber/equip")
-				.failureUrl("/").permitAll().and().logout()
-
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
-				.invalidateHttpSession(true).and().exceptionHandling().accessDeniedPage("/denied");
+				.failureUrl("/")
+				.permitAll()
+			.and()
+				.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/")
+				.clearAuthentication(true)
+				.invalidateHttpSession(true)
+				.deleteCookies("JSESSIONID")
+			.and()
+				.exceptionHandling()
+				.accessDeniedPage("/denied");
 
 		http.csrf().disable();
 
