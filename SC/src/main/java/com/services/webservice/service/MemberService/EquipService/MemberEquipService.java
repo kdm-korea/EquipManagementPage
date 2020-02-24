@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.services.webservice.domain.EState;
+import com.services.webservice.domain.Equipment.EquipState;
 import com.services.webservice.domain.Equipment.EquipStateRepository;
 import com.services.webservice.domain.Equipment.Equipment;
 import com.services.webservice.domain.Equipment.EquipmentRepository;
@@ -16,6 +17,7 @@ import com.services.webservice.domain.Member.Member;
 import com.services.webservice.domain.Member.MemberRepository;
 import com.services.webservice.domain.RentalLog.EquipRentalLogRepository;
 import com.services.webservice.service.dto.Equip.Request.ReqEquipRentalDto;
+import com.services.webservice.service.dto.Equip.Request.ReqEquipReturnDto;
 import com.services.webservice.service.dto.Equip.Response.ResEquipListDto;
 import com.services.webservice.service.dto.Equip.Save.SaveEquipRentalDto;
 
@@ -35,7 +37,7 @@ public class MemberEquipService {
 	private EquipRentalLogRepository equipLogRepo;
 	
 	@Autowired
-	private EquipStateRepository equipStateRepository;
+	private EquipStateRepository equipStateRepo;
 
 	public List<ResEquipListDto> selectEuqipList() {
 		return equipRepo.findAllbyOrderByDesc()
@@ -45,10 +47,8 @@ public class MemberEquipService {
 	}
 
 	public void executeEquipRental(ReqEquipRentalDto dto) throws NullPointerException {
-//		String studentNum = ((SecurityMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal())
-//				.getUsername();
 		// 이 사람이 이 물건과 같은 물건을 빌린 적이 있는지
-		if (equipLogRepo.findByMemberRentalSameEquip(dto.getStudentNum(), dto.getEquipName()) > 0) {
+		if (equipLogRepo.findByMemberRentalSameEquipCount(dto.getStudentNum(), dto.getEquipName()) > 0) {
 			// Message: 이미 같은 기자재를 빌리는 중입니다.		
 		} 
 		else {
@@ -76,10 +76,10 @@ public class MemberEquipService {
 					.toEntity());
 			
 			//기자재 테이블에 렌탈여부 업데이트
-			Equipment equip = equipRepo.findByEquipNum(dto.getEquipNum());
-			equip.setAvailable(false);
-			equip.setEquipStateId(equipStateRepository.findByState(EState.USE.getValue()));
-			equipRepo.save(equip);
+			equipRepo.updatebyRentalEquip(dto.getEquipNum(), equipStateRepo.findByState(EState.USE.getValue()));
+//			equip.setReturn(false);
+//			equip.setEquipStateId(equipStateRepo.findByState(EState.USE.getValue()));
+//			equipRepo.save(equip);
 	}
 	
 	public boolean isReturnEquip() {
