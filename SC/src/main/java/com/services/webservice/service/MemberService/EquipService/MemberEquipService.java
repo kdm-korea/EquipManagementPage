@@ -46,19 +46,23 @@ public class MemberEquipService {
 				.collect(Collectors.toList());
 	}
 
-	public void executeEquipRental(ReqEquipRentalDto dto) throws NullPointerException {
+	public void saveEquipRentalLog(ReqEquipRentalDto dto) throws NullPointerException {
 		// 이 사람이 이 물건과 같은 물건을 빌린 적이 있는지
 		if (equipLogRepo.findByMemberRentalSameEquipCount(dto.getStudentNum(), dto.getEquipName()) > 0) {
 			// Message: 이미 같은 기자재를 빌리는 중입니다.		
 		} 
 		else {
-			saveEquipmentRentalLog(dto);
+			saveEquipRentalLogQuery(dto);
 			//Message: 완료되었습니다.
 		}
 	}
+	
+	public void saveEquipReturnLog(ReqEquipReturnDto dto) throws NullPointerException{
+		equipLogRepo.findByMemberRentalSameEquip(dto.getStudentNum(), dto.getEquipNum());
+	}
 
 	@Transactional
-	private void saveEquipmentRentalLog(ReqEquipRentalDto dto) throws NullPointerException{
+	private void saveEquipRentalLogQuery(ReqEquipRentalDto dto) throws NullPointerException{
 			//1. 사람이 있는지
 			Member member = memberRepo.findByStudentNum(dto.getStudentNum());
 			
@@ -77,14 +81,5 @@ public class MemberEquipService {
 			
 			//기자재 테이블에 렌탈여부 업데이트
 			equipRepo.updatebyRentalEquip(dto.getEquipNum(), equipStateRepo.findByState(EState.USE.getValue()));
-//			equip.setReturn(false);
-//			equip.setEquipStateId(equipStateRepo.findByState(EState.USE.getValue()));
-//			equipRepo.save(equip);
 	}
-	
-	public boolean isReturnEquip() {
-//		렌탈 반납
-		return false;
-	}
-
 }
