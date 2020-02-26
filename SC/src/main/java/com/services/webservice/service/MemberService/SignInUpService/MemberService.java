@@ -27,6 +27,7 @@ public class MemberService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	@Transactional
 	public String signUp(MemberSignUpDto userDto) {
 		userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 		userDto.setRoleId(roleRepository.findByRole(ERole.MEMBER.getValue()));
