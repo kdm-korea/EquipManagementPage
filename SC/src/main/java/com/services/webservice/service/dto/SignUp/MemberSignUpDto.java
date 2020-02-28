@@ -12,8 +12,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class MemberSignUpDto {
-
-	private Long id;
 	
 	private String studentNum;
 	
@@ -27,7 +25,6 @@ public class MemberSignUpDto {
 	
 	public Member toEntity() {
 		return Member.builder()
-				.id(id)
 				.studentNum(studentNum)
 				.password(password)
 				.name(name)
@@ -37,9 +34,8 @@ public class MemberSignUpDto {
 	}
 	
 	@Builder
-	public MemberSignUpDto(Long id, String studentNum, String password, String name, String phoneNumber,
+	public MemberSignUpDto(String studentNum, String password, String name, String phoneNumber,
 			Role roleId) {
-		this.id = id;
 		this.studentNum = studentNum;
 		this.password = password;
 		this.name = name;
