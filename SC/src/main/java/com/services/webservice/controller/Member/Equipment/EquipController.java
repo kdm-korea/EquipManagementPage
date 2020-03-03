@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.services.webservice.domain.Member.Member;
 import com.services.webservice.service.MemberService.MemberInfo;
 import com.services.webservice.service.MemberService.EquipService.MemberEquipService;
 import com.services.webservice.service.dto.Equip.Request.ReqEquipRentalDto;
@@ -33,7 +34,7 @@ public class EquipController {
 	@PostMapping("/return")
 	public String memberEquipRetrun(HttpSession session, ReqEquipReturnDto dto, Model model) {
 		if (session != null) {
-			memberEquipService.executeEquipReturn(dto);
+			memberEquipService.saveEquipReturnLog(dto);
 		}
 		return "";
 	}
