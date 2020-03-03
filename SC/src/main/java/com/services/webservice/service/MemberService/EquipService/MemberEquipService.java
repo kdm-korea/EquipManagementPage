@@ -48,7 +48,7 @@ public class MemberEquipService {
 
 	public void saveEquipRentalLog(ReqEquipRentalDto dto) throws NullPointerException {
 		// 이 사람이 이 물건과 같은 물건을 빌린 적이 있는지
-		if (equipLogRepo.findByMemberRentalSameEquipCount(dto.getStudentNum(), dto.getEquipName()) > 0) {
+		if (equipLogRepo.findbyMemberRentalSameEquipCount(dto.getStudentNum(), dto.getEquipName()) > 0) {
 			// Message: 이미 같은 기자재를 빌리는 중입니다.		
 		} 
 		else {
