@@ -24,8 +24,6 @@ public class SaveEquipRentalDto {
 	
 	private LocalDateTime realReturnTime;
 	
-	private boolean isOverdue;
-	
 	private String reason;
 
 	@Builder
@@ -47,7 +45,6 @@ public class SaveEquipRentalDto {
 				.predictReturnTime(predictReturnTime)
 				.realReturnTime(null)
 				.isOverdue(false)
-				.realReturnTime(null)
 				.reason(reason)
 				.build();
 	}
