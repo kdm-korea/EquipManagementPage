@@ -21,11 +21,11 @@ import lombok.AllArgsConstructor;
 public class EquipController {
 
 	private MemberEquipService memberEquipService;
-
+	
 	@PostMapping("/rent")
 	public String memberEquipRent(HttpSession session, ReqEquipRentalDto dto, Model model) {
 		if(session != null) {
-			memberEquipService.executeEquipRental(dto);
+			memberEquipService.saveEquipRentalLog(dto);
 		}
 		return "";
 	}
