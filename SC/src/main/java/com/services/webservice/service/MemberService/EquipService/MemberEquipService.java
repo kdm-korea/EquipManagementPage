@@ -15,6 +15,7 @@ import com.services.webservice.domain.Equipment.Equipment;
 import com.services.webservice.domain.Equipment.EquipmentRepository;
 import com.services.webservice.domain.Member.Member;
 import com.services.webservice.domain.Member.MemberRepository;
+import com.services.webservice.domain.RentalLog.EquipRentalLog;
 import com.services.webservice.domain.RentalLog.EquipRentalLogRepository;
 import com.services.webservice.service.dto.Equip.Request.ReqEquipRentalDto;
 import com.services.webservice.service.dto.Equip.Request.ReqEquipReturnDto;
@@ -63,23 +64,19 @@ public class MemberEquipService {
 
 	@Transactional
 	private void saveEquipRentalLogQuery(ReqEquipRentalDto dto) throws NullPointerException{
-			//1. 사람이 있는지
-			Member member = memberRepo.findByStudentNum(dto.getStudentNum());
-			
-			//2. 있는 물건인지 & 물건상태는 어떤지
-			Equipment equipment = equipRepo.findByEquipNum(dto.getEquipNum());
-			
-			//3. 기자재 렌탈 테이블에 정보 저장
-			equipLogRepo.save(SaveEquipRentalDto.builder()
-					.memberId(member)
-					.equipId(equipment)
-					.rentalTime(dto.getRentalTime())
-					.predictReturnTime(dto.getPredictReturnTime())
-					.reason(dto.getReason())
-					.build()
-					.toEntity());
-			
-			//기자재 테이블에 렌탈여부 업데이트
-			equipRepo.updatebyRentalEquip(dto.getEquipNum(), equipStateRepo.findByState(EState.USE.getValue()));
+		Member member = memberRepo.findByStudentNum(dto.getStudentNum());
+		
+		Equipment equipment = equipRepo.findByEquipNum(dto.getEquipNum());
+		
+		equipLogRepo.save(SaveEquipRentalDto.builder()
+				.memberId(member)
+				.equipId(equipment)
+				.rentalTime(dto.getRentalTime())
+				.predictReturnTime(dto.getPredictReturnTime())
+				.reason(dto.getReason())
+				.build()
+				.toEntity());
+		
+		equipRepo.updatebyRentalEquip(dto.getEquipNum(), equipStateRepo.findByState(EState.USE.getValue()));
 	}
 }
