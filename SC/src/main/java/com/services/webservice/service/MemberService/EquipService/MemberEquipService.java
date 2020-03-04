@@ -21,6 +21,7 @@ import com.services.webservice.service.dto.Equip.Request.ReqEquipRentalDto;
 import com.services.webservice.service.dto.Equip.Request.ReqEquipReturnDto;
 import com.services.webservice.service.dto.Equip.Response.ResEquipListDto;
 import com.services.webservice.service.dto.Equip.Save.SaveEquipRentalDto;
+import com.services.webservice.service.dto.Equip.Save.SaveEquipReturnDto;
 
 import lombok.AllArgsConstructor;
 
@@ -59,7 +60,24 @@ public class MemberEquipService {
 	}
 	
 	public void saveEquipReturnLog(ReqEquipReturnDto dto) throws NullPointerException{
-		equipLogRepo.findByMemberRentalSameEquip(dto.getStudentNum(), dto.getEquipNum());
+		saveEquipReturnLogQuery(dto);
+	}
+	
+	@Transactional
+	private void saveEquipReturnLogQuery(ReqEquipReturnDto dto)throws NullPointerException {
+		EquipRentalLog log = equipLogRepo.findbyMemberRentalSameEquip(dto.getStudentNum(), dto.getEquipNum()).get(0);
+		
+		equipLogRepo.save(SaveEquipReturnDto.builder()
+			.memberId(log.getMemberId())
+			.equipId(log.getEquipId())
+			.rentalTime(log.getRentalTime())
+			.predictReturnTime(log.getPredictReturnTime())
+			.realReturnTime(dto.getRealReturnTime())
+			.reason(log.getReason())
+			.build()
+			.toEntity());
+		
+		equipRepo.updatebyRentalEquip(dto.getEquipNum(), equipStateRepo.findByState(EState.ACTIVATE.getValue()));
 	}
 
 	@Transactional
