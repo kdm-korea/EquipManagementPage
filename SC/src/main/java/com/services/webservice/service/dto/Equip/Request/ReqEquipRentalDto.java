@@ -1,8 +1,6 @@
 package com.services.webservice.service.dto.Equip.Request;
 
-import java.text.DateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -30,7 +28,7 @@ public class ReqEquipRentalDto {
 
 	@Builder
 	public ReqEquipRentalDto(String studentNum, String equipName, String equipNum, String reason,
-			LocalDateTime rentalTime,  LocalDateTime predictReturnTime) {
+			LocalDateTime rentalTime, LocalDateTime predictReturnTime) {
 		super();
 		this.studentNum = studentNum;
 		this.equipName = equipName;
