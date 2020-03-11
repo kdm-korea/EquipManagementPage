@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-@Table(name = "EQUIPSTATE")
 public class EquipState {
 
 	@Id
