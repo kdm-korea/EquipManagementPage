@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 public class ResEquipListDto {
 
-	private long squNum = 1;
+	private long id;
 
 	private String equipName;
 
@@ -20,7 +20,7 @@ public class ResEquipListDto {
 
 	@Builder
 	public ResEquipListDto(Equipment equip) {
-		this.squNum = equip.getId();
+		this.id = equip.getId();
 		this.equipName = equip.getEquipName();
 		this.equipSeqNum = equip.getEquipSeqNum();
 		this.equipNum = equip.getEquipNum();
