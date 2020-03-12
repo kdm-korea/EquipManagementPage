@@ -27,7 +27,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-@Table(name = "EQUIPRENTALLOG")
 public class EquipRentalLog extends BaseTimeEntity {
 
 	@Id
@@ -35,11 +34,11 @@ public class EquipRentalLog extends BaseTimeEntity {
 	private Long id;
 
 	@ManyToOne(targetEntity = Member.class, fetch = FetchType.EAGER)
-	@JoinColumn(updatable = false, insertable = false, foreignKey = @ForeignKey(name = "fk_Member_to_equipRentalLog_id"))
+	@JoinColumn(updatable = false, foreignKey = @ForeignKey(name = "fk_Member_to_equipRentalLog_id"))
 	private Member memberId;
 
 	@ManyToOne(targetEntity = Equipment.class, fetch = FetchType.EAGER)
-	@JoinColumn(updatable = false, insertable = false, foreignKey = @ForeignKey(name = "fk_equitment_id"))
+	@JoinColumn(updatable = false, foreignKey = @ForeignKey(name = "fk_equitment_id"))
 	private Equipment equipId;
 
 	@Column(nullable = true)
@@ -69,5 +68,18 @@ public class EquipRentalLog extends BaseTimeEntity {
 		this.realReturnTime = realReturnTime;
 		this.isOverdue = isOverdue;
 		this.reason = reason;
+	}
+	
+	@Override
+	public String toString() {
+		return "EquipRentalLog [ id:: " + this.id 
+				+ ",  memberId:: " + this.memberId
+				+ ",  memberId:: " + this.equipId
+				+ ",  rentalTime:: " + this.rentalTime
+				+ ",  predictReturnTime:: " + this.predictReturnTime
+				+ ",  realReturnTime:: " + this.realReturnTime
+				+ ",  isOverdue:: " + this.isOverdue
+				+ ",  reason:: " + this.reason;
+				
 	}
 }
