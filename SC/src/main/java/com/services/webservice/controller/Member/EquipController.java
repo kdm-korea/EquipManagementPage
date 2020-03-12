@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.services.webservice.domain.Member.Member;
 import com.services.webservice.service.MemberService.MemberInfo;
-import com.services.webservice.service.MemberService.EquipService.MemberEquipService;
+import com.services.webservice.service.MemberService.EquipService.EquipService;
 import com.services.webservice.service.dto.Equip.Request.ReqChkAlreadyHaveEqiupDto;
 import com.services.webservice.service.dto.Equip.Request.ReqEquipRentalDto;
 import com.services.webservice.service.dto.Equip.Request.ReqEquipReturnDto;
@@ -27,31 +27,35 @@ import lombok.AllArgsConstructor;
 public class EquipController {
 
 	@Autowired
-	private MemberEquipService memberEquipService;
+	private EquipService equipService;
 	
 	@Autowired
 	private MemberInfo memberInfo;
 	
+	@GetMapping("/list")
+	public String equipList(HttpSession session, Principal principal, Model model) {
+		if (principal != null) {
+			model.addAttribute("memberInfo", memberInfo.findByMemeberInfo());
+			model.addAttribute("equiplist", equipService.equipList());
+		} else {
+			return "redirect:/";
+		}
+		return "Member/memberEquip";
+	}
+	
 	@PostMapping("/rent")
-	public String memberEquipRent(HttpSession session, ReqEquipRentalDto dto) {
+	public String equipRent(HttpSession session, ReqEquipRentalDto dto) {
 		if(session != null) {
-			memberEquipService.saveEquipRentalLog(dto);
+			equipService.equipRent(dto);
 		}
 		return "";
 	}
 
 	@PostMapping("/return")
-	public String memberEquipRetrun(HttpSession session, ReqEquipReturnDto dto) {
+	public String equipRetrun(HttpSession session, ReqEquipReturnDto dto) {
 		if (session != null) {
-			memberEquipService.saveEquipReturnLog(dto);
+			equipService.equipReturn(dto);
 		}
 		return "";
 	}
-	
-	@GetMapping("/chkAlreadyHaveEquip")
-	public String chkAlreadyHaveEquip(Principal principal, ReqChkAlreadyHaveEqiupDto dto, Model model) {
-		System.out.println(memberInfo.findByMemeberInfo().getStudentNum()); 
-		return "";
-	}
-	
 }
