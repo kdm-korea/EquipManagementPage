@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.services.webservice.service.MemberService.MemberInfo;
-import com.services.webservice.service.MemberService.EquipService.MemberEquipService;
+import com.services.webservice.service.MemberService.EquipService.EquipService;
 
 import lombok.AllArgsConstructor;
 
@@ -17,26 +17,10 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/memeber")
 public class MemberController {
 
-	private MemberEquipService memberEquipService;
+	private EquipService memberEquipService;
 
 	private MemberInfo memberInfo;
-	
-	@GetMapping("/equip")
-	public String resMemberMypage(HttpSession session, Model model) {
-		if (session != null) {
-			model.addAttribute("memberInfo", memberInfo.findByMemeberInfo());
-			model.addAttribute("equiplist", memberEquipService.selectEuqipList());
-		} else {
-			return "redirect:/";
-		}
-		return "Member/memberEquip";
-	}
-	
-	@GetMapping("/computer")
-	public String computer() {
-		return "Member/memberComputer";
-	}
-	
+		
 	@GetMapping("/mypage")
 	public String mypage() {
 		return "Member/memberMypage";
