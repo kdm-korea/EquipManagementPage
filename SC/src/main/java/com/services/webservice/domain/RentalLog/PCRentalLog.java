@@ -31,12 +31,12 @@ public class PCRentalLog extends BaseTimeEntity {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_user_ide"))
+	@ManyToOne(targetEntity = Member.class, fetch = FetchType.EAGER)
+	@JoinColumn(updatable = false, foreignKey = @ForeignKey(name = "fk_user_ide"))
 	private Member memberId;
 
-	@ManyToOne(targetEntity = Computer.class, fetch = FetchType.LAZY)
-	@JoinColumn(name = "computer_id",foreignKey = @ForeignKey(name = "fk_computer_idf"))
+	@ManyToOne(targetEntity = Computer.class, fetch = FetchType.EAGER)
+	@JoinColumn(updatable = false, foreignKey = @ForeignKey(name = "fk_computer_idf"))
 	private Computer pcId;
 
 	@Column(nullable = false)
