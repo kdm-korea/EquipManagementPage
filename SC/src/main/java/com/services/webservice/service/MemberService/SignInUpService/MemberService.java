@@ -10,8 +10,8 @@ import com.services.webservice.domain.ERole;
 import com.services.webservice.domain.Member.Member;
 import com.services.webservice.domain.Member.MemberRepository;
 import com.services.webservice.domain.Member.RoleRepository;
-import com.services.webservice.service.dto.Member.MemberForgetPwDto;
-import com.services.webservice.service.dto.Member.MemberInfoModiifedDto;
+import com.services.webservice.service.dto.Member.Request.ReqMemberForgetPwDto;
+import com.services.webservice.service.dto.Member.Request.ReqMemberInfoModiifedDto;
 import com.services.webservice.service.dto.SignUp.MemberSignUpDto;
 import com.services.webservice.service.dto.SignUp.MemberStudentNumChkDto;
 
@@ -38,7 +38,7 @@ public class MemberService {
 	}
 
 	@Transactional
-	public void modifiedPw(MemberInfoModiifedDto dto) {
+	public void modifiedPw(ReqMemberInfoModiifedDto dto) {
 		Member member = memberRepo.getOne(dto.getId());
 		
 		if(member.getPassword() == passwordEncoder.encode(dto.getPassword())) {
@@ -47,7 +47,7 @@ public class MemberService {
 	}
 	
 	@Transactional
-	public void forgetPw(MemberForgetPwDto dto) {
+	public void forgetPw(ReqMemberForgetPwDto dto) {
 		Member member = memberRepo.getOne(dto.getId());
 		
 		if(member.getPhoneNumber() == dto.getPhoneNumber()) {
