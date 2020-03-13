@@ -38,7 +38,7 @@ public class Equipment extends BaseTimeEntity {
 	private String equipNum;
 	
 	@ManyToOne(targetEntity = EquipState.class, fetch = FetchType.EAGER)
-	@JoinColumn(name = "equipState_id", foreignKey = @ForeignKey(name = "fk_equipment_to_equipState_id"))
+	@JoinColumn(foreignKey = @ForeignKey(name = "fk_equipment_to_equipState_id"))
 	private EquipState equipStateId;
 	
 	@Column(columnDefinition = "boolean")
