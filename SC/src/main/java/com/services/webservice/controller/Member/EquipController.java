@@ -6,16 +6,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.services.webservice.domain.Member.Member;
 import com.services.webservice.service.MemberService.MemberInfo;
-import com.services.webservice.service.MemberService.EquipService.EquipService;
-import com.services.webservice.service.dto.Equip.Request.ReqChkAlreadyHaveEqiupDto;
+import com.services.webservice.service.EquipService.EquipService;
 import com.services.webservice.service.dto.Equip.Request.ReqEquipRentalDto;
 import com.services.webservice.service.dto.Equip.Request.ReqEquipReturnDto;
 
