@@ -46,6 +46,14 @@ public class MemberService {
 		}
 	}
 	
+	@Transactional
+	public void forgetPw(MemberForgetPwDto dto) {
+		Member member = memberRepo.getOne(dto.getId());
+		
+		if(member.getPhoneNumber() == dto.getPhoneNumber()) {
+			memberRepo.updatePw(passwordEncoder.encode(dto.getNewPassword()), dto.getId());
+		}
+	}
 		try {
 			return null != memberRepository.findByStudentNum(dto.getStudentNum()) ? false : true;
 		} catch (NullPointerException e) {
