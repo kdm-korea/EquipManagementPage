@@ -1,7 +1,5 @@
 package com.services.webservice.controller.Member;
 
-import java.security.Principal;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.services.webservice.service.MemberService.MemberInfo;
 import com.services.webservice.service.ComputerService.ComputerService;
 import com.services.webservice.service.dto.Computer.Request.ReqComputerRentalDto;
+import com.services.webservice.service.dto.Computer.Request.ReqComputerReturnDto;
+
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -47,13 +47,10 @@ public class ComputerController {
 	}
 	
 	@PostMapping("return")
-	public String computerReturn(HttpSession session) {
+	public String computerReturn(HttpSession session, ReqComputerReturnDto dto) {
+		if(session != null) {
+			service.pcReturn(dto);
+		}
 		return "";
 	}
-	
-	@GetMapping("/chkAlreadyHaveComputer")
-	public String chkAlreadyHaveComputer(Principal principal, Model model) {
-		return "";
-	}
-	
 }
