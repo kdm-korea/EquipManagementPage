@@ -33,7 +33,7 @@ public class MemberService {
 	@Transactional
 	public String signUp(MemberSignUpDto userDto) {
 		userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
-		userDto.setRoleId(roleRepository.findByRole(ERole.MEMBER.getValue()));
+		userDto.setRoleId(roleRepo.findByRole(ERole.MEMBER.getValue()));
 		return createMember(userDto);
 	}
 
@@ -54,8 +54,10 @@ public class MemberService {
 			memberRepo.updatePw(passwordEncoder.encode(dto.getNewPassword()), dto.getId());
 		}
 	}
+	
+	public boolean studentNumChk(MemberStudentNumChkDto dto) {
 		try {
-			return null != memberRepository.findByStudentNum(dto.getStudentNum()) ? false : true;
+			return null != memberRepo.findByStudentNum(dto.getStudentNum()) ? false : true;
 		} catch (NullPointerException e) {
 			return true;
 		}
@@ -63,6 +65,8 @@ public class MemberService {
 
 	@Transactional
 	private String createMember(MemberSignUpDto userDto) {
-		return memberRepository.save(userDto.toEntity()).getStudentNum();
+		return memberRepo.save(userDto.toEntity()).getStudentNum();
 	}
+	
+	
 }
