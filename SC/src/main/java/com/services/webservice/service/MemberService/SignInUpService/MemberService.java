@@ -7,10 +7,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.services.webservice.domain.ERole;
+import com.services.webservice.domain.Member.Member;
 import com.services.webservice.domain.Member.MemberRepository;
 import com.services.webservice.domain.Member.RoleRepository;
+import com.services.webservice.service.dto.Member.MemberForgetPwDto;
+import com.services.webservice.service.dto.Member.MemberInfoModiifedDto;
 import com.services.webservice.service.dto.SignUp.MemberSignUpDto;
-import com.services.webservice.service.dto.SignUp.UserStudentNumChkDto;
+import com.services.webservice.service.dto.SignUp.MemberStudentNumChkDto;
 
 import lombok.AllArgsConstructor;
 
@@ -19,10 +22,10 @@ import lombok.AllArgsConstructor;
 public class MemberService {
 
 	@Autowired
-	private RoleRepository roleRepository;
+	private RoleRepository roleRepo;
 
 	@Autowired
-	private MemberRepository memberRepository;
+	private MemberRepository memberRepo;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -34,7 +37,15 @@ public class MemberService {
 		return createMember(userDto);
 	}
 
-	public boolean studentNumChk(UserStudentNumChkDto dto) {
+	@Transactional
+	public void modifiedPw(MemberInfoModiifedDto dto) {
+		Member member = memberRepo.getOne(dto.getId());
+		
+		if(member.getPassword() == passwordEncoder.encode(dto.getPassword())) {
+			memberRepo.updatePw(passwordEncoder.encode(dto.getNewPassword()), dto.getId());
+		}
+	}
+	
 		try {
 			return null != memberRepository.findByStudentNum(dto.getStudentNum()) ? false : true;
 		} catch (NullPointerException e) {
