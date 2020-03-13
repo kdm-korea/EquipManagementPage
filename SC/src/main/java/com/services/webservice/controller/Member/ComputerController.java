@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.services.webservice.service.MemberService.MemberInfo;
 import com.services.webservice.service.ComputerService.ComputerService;
+import com.services.webservice.service.dto.Computer.Request.ReqComputerRentalDto;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -38,7 +39,10 @@ public class ComputerController {
 	}
 
 	@PostMapping("/rent")
-	public String computerRent(HttpSession session) {
+	public String computerRent(HttpSession session, ReqComputerRentalDto dto) {
+		if(session != null) {
+			service.pcRent(dto);
+		}
 		return "";
 	}
 	
