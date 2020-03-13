@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserStudentNumChkDto {
+public class MemberStudentNumChkDto {
 	private String studentNum;
 
 	public Member toEntity() {
@@ -20,7 +20,7 @@ public class UserStudentNumChkDto {
 	}
 
 	@Builder
-	public UserStudentNumChkDto(String studentNum) {
+	public MemberStudentNumChkDto(String studentNum) {
 		this.studentNum = studentNum;
 	}
 }
