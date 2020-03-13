@@ -15,15 +15,17 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
+@ToString
 public class Computer extends BaseTimeEntity {
 
 	@Id
 	@GeneratedValue
-	private Long pcId;
+	private Long id;
 
 	@Column(nullable = false)
 	private String className;
@@ -34,7 +36,7 @@ public class Computer extends BaseTimeEntity {
 	@Column(unique = true, nullable = false)
 	private String equipNum;
 
-	@ManyToOne(targetEntity = EquipState.class, fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity = EquipState.class, fetch = FetchType.EAGER)
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_computer_to_equipState_id"))
 	private EquipState equipStateId;
 	
@@ -45,9 +47,9 @@ public class Computer extends BaseTimeEntity {
 	private String reason;
 	
 	@Builder
-	public Computer(Long pcId, String className, int pcSeqNum, String equipNum, EquipState equipStateId, boolean isAvailable,
+	public Computer(Long id, String className, int pcSeqNum, String equipNum, EquipState equipStateId, boolean isAvailable,
 			String reason) {
-		this.pcId = pcId;
+		this.id = id;
 		this.className = className;
 		this.pcSeqNum = pcSeqNum;
 		this.equipNum = equipNum;
@@ -55,4 +57,6 @@ public class Computer extends BaseTimeEntity {
 		this.isAvailable = isAvailable;
 		this.reason = reason;
 	}
+	
+	
 }
