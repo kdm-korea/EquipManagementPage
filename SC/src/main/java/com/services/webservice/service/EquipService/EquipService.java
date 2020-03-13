@@ -1,4 +1,4 @@
-package com.services.webservice.service.MemberService.EquipService;
+package com.services.webservice.service.EquipService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,7 +51,18 @@ public class EquipService {
 			// Message: 이미 같은 기자재를 빌리는 중입니다.		
 		} 
 		else {
-			equipRentalQuery(dto);
+			equipLogRepo.save(EquipRentalDao.builder()
+					.memberId(memberRepo
+							.getOne(dto.getMemberId()))
+					.equipId(equipRepo
+							.getOne(dto.getEquipId()))
+					.rentalTime(dto.getRentalTime())
+					.predictReturnTime(dto.getPredictReturnTime())
+					.reason(dto.getReason())
+					.build()
+					.toEntity());
+			
+			equipRepo.updatebyRentalEquip(dto.getEquipId(), equipStateRepo.findByState(EState.USE.getValue()));
 			//Message: 완료되었습니다.
 		}
 	}
@@ -63,19 +74,5 @@ public class EquipService {
 				dto.getRealReturnTime());
 		
 		equipRepo.updatebyRentalEquip(dto.getEquipId(), equipStateRepo.findByState(EState.ACTIVATE.getValue()));
-	}
-
-	@Transactional
-	private void equipRentalQuery(ReqEquipRentalDto dto) {
-		equipLogRepo.save(EquipRentalDao.builder()
-				.memberId(memberRepo.getOne(dto.getMemberId()))
-				.equipId(equipRepo.getOne(dto.getEquipId()))
-				.rentalTime(dto.getRentalTime())
-				.predictReturnTime(dto.getPredictReturnTime())
-				.reason(dto.getReason())
-				.build()
-				.toEntity());
-		
-		equipRepo.updatebyRentalEquip(dto.getEquipId(), equipStateRepo.findByState(EState.USE.getValue()));
 	}
 }
