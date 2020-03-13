@@ -5,9 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -17,10 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.services.webservice.domain.Equipment.EquipmentRepository;
-import com.services.webservice.domain.Member.MemberRepository;
-import com.services.webservice.domain.RentalLog.EquipRentalLog;
 import com.services.webservice.domain.RentalLog.EquipRentalLogRepository;
-import com.services.webservice.service.MemberService.EquipService.EquipService;
+import com.services.webservice.service.EquipService.EquipService;
 import com.services.webservice.service.dto.Equip.Request.ReqEquipRentalDto;
 import com.services.webservice.service.dto.Equip.Request.ReqEquipReturnDto;
 import com.services.webservice.service.dto.Equip.Response.ResEquipListDto;
@@ -39,7 +36,7 @@ public class EquipServiceTest {
 	@Autowired
 	private EquipService equipService;
 
-	@AfterAll
+	@AfterEach
 	public void cleanUp() {
 		equipLogRepo.deleteAll();
 	}
