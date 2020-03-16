@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.services.webservice.service.MemberService.MemberInfo;
@@ -21,24 +22,11 @@ public class MemberController {
 
 	private MemberInfo memberInfo;
 		
-	@GetMapping("/mypage")
+	@GetMapping("/mypage/view")
 	public String mypage() {
+		//have Info
 		return "Member/memberMypage";
 	}
-
-	@GetMapping("/board")
-	public String boardQA() {
-		return "Member/memberQABoard";
-	}
-
-	@GetMapping("/computerRent")
-	public String memberComputer(Model model) {
-
-		return "";
-	}
-
-	@GetMapping("/QABoard")
-	public String memberQABoard(Model model) {
-		return "";
-	}
+	
+//	@PostMapping("/mypage/")
 }
