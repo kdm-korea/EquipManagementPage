@@ -36,8 +36,8 @@ public class PCRentalDao {
 
 	public PCRentalLog toEntity() {
 		return PCRentalLog.builder()
-				.memberId(memberId)
-				.pcId(pcId)
+				.member(memberId)
+				.pc(pcId)
 				.rentalTime(rentalTime)
 				.predictReturnTime(predictReturnTime)
 				.realReturnTime(null)
