@@ -35,11 +35,11 @@ public class EquipRentalLog extends BaseTimeEntity {
 
 	@ManyToOne(targetEntity = Member.class, fetch = FetchType.EAGER)
 	@JoinColumn(updatable = false, foreignKey = @ForeignKey(name = "fk_Member_to_equipRentalLog_id"))
-	private Member memberId;
+	private Member member;
 
 	@ManyToOne(targetEntity = Equipment.class, fetch = FetchType.EAGER)
 	@JoinColumn(updatable = false, foreignKey = @ForeignKey(name = "fk_equitment_id"))
-	private Equipment equipId;
+	private Equipment equip;
 
 	@Column(nullable = true)
 	private LocalDateTime rentalTime;
@@ -58,11 +58,11 @@ public class EquipRentalLog extends BaseTimeEntity {
 	private String reason;
 
 	@Builder
-	public EquipRentalLog(Long id, Member memberId, Equipment equipId, LocalDateTime rentalTime,
+	public EquipRentalLog(Long id, Member member, Equipment equip, LocalDateTime rentalTime,
 			LocalDateTime predictReturnTime, LocalDateTime realReturnTime, boolean isOverdue, String reason) {
 		this.id = id;
-		this.memberId = memberId;
-		this.equipId = equipId;
+		this.member = member;
+		this.equip = equip;
 		this.rentalTime = rentalTime;
 		this.predictReturnTime = predictReturnTime;
 		this.realReturnTime = realReturnTime;
@@ -73,8 +73,8 @@ public class EquipRentalLog extends BaseTimeEntity {
 	@Override
 	public String toString() {
 		return "EquipRentalLog [ id:: " + this.id 
-				+ ",  memberId:: " + this.memberId
-				+ ",  memberId:: " + this.equipId
+				+ ",  memberId:: " + this.member
+				+ ",  memberId:: " + this.equip
 				+ ",  rentalTime:: " + this.rentalTime
 				+ ",  predictReturnTime:: " + this.predictReturnTime
 				+ ",  realReturnTime:: " + this.realReturnTime
