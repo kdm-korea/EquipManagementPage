@@ -14,6 +14,6 @@ public interface ComputerRepository extends JpaRepository<Computer, Long>{
 	List<Computer> findAllbyAvailable();
 	
 	@Modifying
-	@Query("Update Computer c set c.isAvailable = false, c.equipStateId = :equipState Where c.id = :pcId")
+	@Query("Update Computer c set c.isAvailable = false, c.equipState = :equipState Where c.id = :pcId")
 	void updatebyRentalPC(@Param("pcId") long pcId, @Param("equipState")EquipState equipState);
 }
