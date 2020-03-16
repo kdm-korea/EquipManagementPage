@@ -16,7 +16,7 @@ public class SecurityMember extends User {
 	private static final long serialVersionUID = 1L;
 
 	public SecurityMember(Member member) {
-		super(member.getStudentNum(), member.getPassword(), makeGrantedAuthority(member.getRoleId()));
+		super(member.getStudentNum(), member.getPassword(), makeGrantedAuthority(member.getRole()));
 	}
 
 	private static List<GrantedAuthority> makeGrantedAuthority(Role roles) {
