@@ -33,11 +33,11 @@ public class PCRentalLog extends BaseTimeEntity {
 
 	@ManyToOne(targetEntity = Member.class, fetch = FetchType.EAGER)
 	@JoinColumn(updatable = false, foreignKey = @ForeignKey(name = "fk_user_ide"))
-	private Member memberId;
+	private Member member;
 
 	@ManyToOne(targetEntity = Computer.class, fetch = FetchType.EAGER)
 	@JoinColumn(updatable = false, foreignKey = @ForeignKey(name = "fk_computer_idf"))
-	private Computer pcId;
+	private Computer pc;
 
 	@Column(nullable = false)
 	private LocalDateTime rentalTime;
@@ -55,11 +55,11 @@ public class PCRentalLog extends BaseTimeEntity {
 	private boolean isOverdue;
 
 	@Builder
-	public PCRentalLog(Long id, Member memberId, Computer pcId, LocalDateTime rentalTime, LocalDateTime predictReturnTime,
+	public PCRentalLog(Long id, Member member, Computer pc, LocalDateTime rentalTime, LocalDateTime predictReturnTime,
 			LocalDateTime realReturnTime, String reason, boolean isOverdue) {
 		this.id = id;
-		this.memberId = memberId;
-		this.pcId = pcId;
+		this.member = member;
+		this.pc = pc;
 		this.rentalTime = rentalTime;
 		this.predictReturnTime = predictReturnTime;
 		this.realReturnTime = realReturnTime;
