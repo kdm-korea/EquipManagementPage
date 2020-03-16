@@ -6,10 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -17,9 +14,6 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.event.annotation.AfterTestMethod;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
-import org.springframework.test.context.event.annotation.BeforeTestMethod;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.services.webservice.domain.EState;
@@ -56,7 +50,7 @@ public class PCServiceTest {
 				.className("505")
 				.pcSeqNum(0)
 				.equipNum("25214")
-				.equipStateId(stateRepo.findByState(EState.ACTIVATE.getValue()))
+				.equipState(stateRepo.findByState(EState.ACTIVATE.getValue()))
 				.isAvailable(true)
 				.build());
 	}
@@ -89,10 +83,10 @@ public class PCServiceTest {
 		PCRentalLog log = pcLogRepo.findAll().get(0);
 		Computer pc = pcRepo.findAll().get(0);
 		
-		assertEquals("2019631001", log.getMemberId().getStudentNum());
-		assertEquals("25214", log.getPcId().getEquipNum());
+		assertEquals("2019631001", log.getMember().getStudentNum());
+		assertEquals("25214", log.getPc().getEquipNum());
 		assertEquals("Test", log.getReason());
-		assertEquals(EState.USE.getValue(), pc.getEquipStateId().getState());
+		assertEquals(EState.USE.getValue(), pc.getEquipState().getState());
 	}
 	
 	@Test
@@ -115,6 +109,6 @@ public class PCServiceTest {
 		Computer pc = pcRepo.findAll().get(0);
 		
 		assertNotNull(log.getRealReturnTime());
-		assertEquals(EState.ACTIVATE.getValue(), pc.getEquipStateId().getState());
+		assertEquals(EState.ACTIVATE.getValue(), pc.getEquipState().getState());
 	}
 }
