@@ -37,6 +37,9 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-security'
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	
+	compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.6'
+	
 
 	implementation 'org.springframework.security:spring-security-test'
 	
