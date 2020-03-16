@@ -24,6 +24,6 @@ public class ResEquipListDto {
 		this.equipName = equip.getEquipName();
 		this.equipSeqNum = equip.getEquipSeqNum();
 		this.equipNum = equip.getEquipNum();
-		this.equipState = equip.getEquipStateId().getState();
+		this.equipState = equip.getEquipState().getState();
 	}
 }
