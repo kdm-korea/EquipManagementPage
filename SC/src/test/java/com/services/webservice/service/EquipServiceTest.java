@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -77,7 +76,7 @@ public class EquipServiceTest {
 				.predictReturnTime(LocalDateTime.now())
 				.build());
 		
-		String state = equipRepo.findByEquipNum("1234").getEquipStateId().getState();
+		String state = equipRepo.findByEquipNum("1234").getEquipState().getState();
 		
 		String reason = equipLogRepo.findAll().get(0).getReason();
 		
@@ -102,15 +101,12 @@ public class EquipServiceTest {
 				.equipId(0)
 				.realReturnTime("2020-05-12T12:22:11")
 				.build());
-		
-		System.out.println(equipLogRepo.findAll().get(0).toString());
-		
+
 		LocalDateTime realReturnTime = equipLogRepo.findAll().get(0).getRealReturnTime();
 		
-		String state = equipRepo.findByEquipNum("1234").getEquipStateId().getState();
+		String state = equipRepo.findByEquipNum("1234").getEquipState().getState();
 		
 		assertEquals("2020-05-12T12:22:11", realReturnTime.toString());
-		
 		assertEquals("ACTIVATE", state);
 	}
 }
