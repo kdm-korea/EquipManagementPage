@@ -29,7 +29,7 @@ public class MemberSignUpDto {
 				.password(password)
 				.name(name)
 				.phoneNumber(phoneNumber)
-				.roleId(roleId)
+				.role(roleId)
 				.build();
 	}
 	
