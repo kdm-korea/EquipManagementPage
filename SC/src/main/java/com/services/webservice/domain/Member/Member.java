@@ -47,15 +47,15 @@ public class Member extends BaseTimeEntity{
 	
 	@ManyToOne(targetEntity = Role.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_role_id"))
-	private Role roleId;
+	private Role role;
 
 	@Builder
-	public Member(Long id, String studentNum, String password, String name, String phoneNumber, Role roleId) {
+	public Member(Long id, String studentNum, String password, String name, String phoneNumber, Role role) {
 		this.id = id;
 		this.studentNum = studentNum;
 		this.password = password;
 		this.name = name;
 		this.phoneNumber = phoneNumber;
-		this.roleId = roleId;
+		this.role = role;
 	}
 }
