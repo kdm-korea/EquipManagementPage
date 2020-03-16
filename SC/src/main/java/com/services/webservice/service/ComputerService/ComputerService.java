@@ -3,16 +3,14 @@ package com.services.webservice.service.ComputerService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.services.webservice.domain.EState;
 import com.services.webservice.domain.Equipment.ComputerRepository;
 import com.services.webservice.domain.Equipment.EquipStateRepository;
 import com.services.webservice.domain.Member.MemberRepository;
-import com.services.webservice.domain.RentalLog.PCRentalLog;
 import com.services.webservice.domain.RentalLog.PCRentalLogRepository;
 import com.services.webservice.service.dto.Computer.Dao.PCRentalDao;
 import com.services.webservice.service.dto.Computer.Request.ReqComputerRentalDto;
