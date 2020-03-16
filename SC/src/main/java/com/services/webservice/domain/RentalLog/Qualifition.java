@@ -29,7 +29,7 @@ public class Qualifition {
 
 	@ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_Member_ida"))
-	private Member memberId;
+	private Member member;
 
 	@Column(nullable = false)
 	private LocalDateTime limiteStartDay;
@@ -41,10 +41,10 @@ public class Qualifition {
 	private String reason;
 
 	@Builder
-	public Qualifition(Long id, Member memberId, LocalDateTime limiteStartDay, LocalDateTime limiteEndDay,
+	public Qualifition(Long id, Member member, LocalDateTime limiteStartDay, LocalDateTime limiteEndDay,
 			String reason) {
 		this.id = id;
-		this.memberId = memberId;
+		this.member = member;
 		this.limiteStartDay = limiteStartDay;
 		this.limiteEndDay = limiteEndDay;
 		this.reason = reason;
