@@ -39,8 +39,8 @@ public class EquipRentalDao {
 	
 	public EquipRentalLog toEntity() {
 		return EquipRentalLog.builder()
-				.memberId(memberId)
-				.equipId(equipId)
+				.member(memberId)
+				.equip(equipId)
 				.rentalTime(rentalTime)
 				.predictReturnTime(predictReturnTime)
 				.realReturnTime(null)
