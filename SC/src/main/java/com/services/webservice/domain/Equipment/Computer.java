@@ -38,7 +38,7 @@ public class Computer extends BaseTimeEntity {
 
 	@ManyToOne(targetEntity = EquipState.class, fetch = FetchType.EAGER)
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_computer_to_equipState_id"))
-	private EquipState equipStateId;
+	private EquipState equipState;
 	
 	@Column(columnDefinition = "boolean")
 	private boolean isAvailable;
@@ -47,13 +47,13 @@ public class Computer extends BaseTimeEntity {
 	private String reason;
 	
 	@Builder
-	public Computer(Long id, String className, int pcSeqNum, String equipNum, EquipState equipStateId, boolean isAvailable,
+	public Computer(Long id, String className, int pcSeqNum, String equipNum, EquipState equipState, boolean isAvailable,
 			String reason) {
 		this.id = id;
 		this.className = className;
 		this.pcSeqNum = pcSeqNum;
 		this.equipNum = equipNum;
-		this.equipStateId = equipStateId;
+		this.equipState = equipState;
 		this.isAvailable = isAvailable;
 		this.reason = reason;
 	}
