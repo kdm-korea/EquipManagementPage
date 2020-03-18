@@ -38,13 +38,13 @@ public class MemberService {
 
 	@Transactional
 	public void modifiedPw(ReqMemberInfoModiifedDto dto) {
-		Member member = memberRepo.getOne(dto.getId());
-		
-		if(member.getPassword() == passwordEncoder.encode(dto.getPassword())) {
+		if (passwordEncoder.matches(dto.getPassword(), memberRepo.getOne(dto.getId()).getPassword())) {
 			memberRepo.updatePw(passwordEncoder.encode(dto.getNewPassword()), dto.getId());
+		}else {
+			
 		}
 	}
-	
+
 	@Transactional
 	public void forgetPw(ReqMemberForgetPwDto dto) {
 		Member member = memberRepo.getOne(dto.getId());
