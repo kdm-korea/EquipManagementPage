@@ -1,4 +1,4 @@
-package com.services.webservice.service.MemberService.SignInUpService;
+package com.services.webservice.service.MemberService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
