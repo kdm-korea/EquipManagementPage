@@ -47,13 +47,11 @@ public class MemberService {
 
 	@Transactional
 	public void forgetPw(ReqMemberForgetPwDto dto) {
-		Member member = memberRepo.getOne(dto.getId());
-		
-		if(member.getPhoneNumber() == dto.getPhoneNumber()) {
+		if (memberRepo.getOne(dto.getId()).getPhoneNumber() == dto.getPhoneNumber()) {
 			memberRepo.updatePw(passwordEncoder.encode(dto.getNewPassword()), dto.getId());
 		}
 	}
-	
+
 	public boolean studentNumChk(MemberStudentNumChkDto dto) {
 		try {
 			return null != memberRepo.findByStudentNum(dto.getStudentNum()) ? false : true;
@@ -66,6 +64,5 @@ public class MemberService {
 	private String createMember(MemberSignUpDto userDto) {
 		return memberRepo.save(userDto.toEntity()).getStudentNum();
 	}
-	
-	
+
 }
