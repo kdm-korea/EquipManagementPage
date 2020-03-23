@@ -30,10 +30,10 @@ public class MemberService {
 	private PasswordEncoder passwordEncoder;
 
 	@Transactional
-	public String signUp(MemberSignUpDto userDto) {
-		userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
-		userDto.setRoleId(roleRepo.findByRole(ERole.MEMBER.getValue()));
-		return createMember(userDto);
+	public String signUp(MemberSignUpDto dto) {
+		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+		dto.setRoleId(roleRepo.findByRole(ERole.MEMBER.getValue()));
+		return createMember(dto);
 	}
 
 	@Transactional
@@ -53,11 +53,7 @@ public class MemberService {
 	}
 
 	public boolean studentNumChk(MemberStudentNumChkDto dto) {
-		try {
-			return null != memberRepo.findByStudentNum(dto.getStudentNum()) ? false : true;
-		} catch (NullPointerException e) {
-			return true;
-		}
+		return (memberRepo.countByStudentNum(dto.getStudentNum()) == 0) ? true : false;
 	}
 
 	@Transactional
