@@ -12,6 +12,8 @@ public interface MemberRepository extends JpaRepository<Member, Long>{
 	
 	Member findByStudentNum(String studentNum);
 	
+	int countByStudentNum(String studentNum);
+	
 	@Modifying
 	@Query("Update Member m Set m.password = :pw Where m.id = :id")
 	void updatePw(@Param("pw") String pw, @Param("id")long id);
