@@ -21,14 +21,14 @@ public class ResBoardDetailDto extends TimeFormatter {
 	
 	private String memberName;
 	
-	private String createDate;
+	private String createdDate;
 	
-//	public ResBoardDetailDto(Board board) {
-//		this.id = board.getId();
-//		this.title = board.getTitle();
-//		this.contents = board.getContents();
-//		this.memberStudentNum = board.getMember().getStudentNum();
-//		this.memberName = board.getMember().getName();
-//		this.createDate  = board.getCreatedDate().format(formatter);
-//	}
+	public ResBoardDetailDto(Board board) {
+		this.id = board.getId();
+		this.title = board.getTitle();
+		this.contents = board.getContents();
+		this.memberStudentNum = board.getMember().getStudentNum();
+		this.memberName = board.getMember().getName();
+		this.createdDate  = board.getCreatedDate().format(formatter);
+	}
 }
