@@ -27,6 +27,4 @@ public class MemberController {
 		//have Info
 		return "Member/memberMypage";
 	}
-	
-//	@PostMapping("/mypage/")
 }
