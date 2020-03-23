@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.services.webservice.ExceptionHandler.ExceptionClass.CustomNoArgsException;
 import com.services.webservice.domain.Board.Board;
 import com.services.webservice.domain.Board.BoardRepository;
 import com.services.webservice.domain.Member.Member;
@@ -46,26 +47,27 @@ public class BoardService {
 	}
 
 	@Transactional
-	public void save(ReqSavePostDto dto) {
-		boardRepo.save(Board.builder()
+	public long save(ReqSavePostDto dto) {
+		return boardRepo.save(Board.builder()
 				.member(memberRepo.getOne(dto.getMemberId()))
 				.title(dto.getTitle())
 				.contents(dto.getContents())
-				.build());
+				.build()).getId();
 	}
 
 	@Transactional
-	public void update(ReqPostDetailDto dto) {
-		boardRepo.save(Board.builder()
+	public long update(ReqPostDetailDto dto) {
+		return boardRepo.save(Board.builder()
 				.id(dto.getBoardId())
 				.member(memberRepo.getOne(dto.getMemberId()))
 				.title(dto.getTitle())
 				.contents(dto.getContents())
-				.build());
+				.build()).getId();
 	}
 
 	@Transactional
 	public void delete(long no) {
+		
 		boardRepo.deleteById(no);
 	}
 }
