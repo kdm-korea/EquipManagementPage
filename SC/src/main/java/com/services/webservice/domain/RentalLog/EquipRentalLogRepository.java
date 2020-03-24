@@ -23,8 +23,7 @@ public interface EquipRentalLogRepository extends JpaRepository<EquipRentalLog, 
 	int findbyMemberRentalSameEquipCount(@Param("memberId") long memberId, @Param("equipId") long equipId);
 	
 	@Query("Select p From EquipRentalLog p "
-			+ "Where p.equip.id = :equipId "
-			+ "and p.member.id = :memberId "
+			+ "Where p.member.id = :memberId "
 			+ "and p.realReturnTime = null")
-	List<EquipRentalLog> findbyMemberRentalSameEquip(@Param("memberId") long memberId, @Param("equipId") long equipId);
+	List<EquipRentalLog> findbyMemberRentalSameEquip(@Param("memberId") long memberId);
 }

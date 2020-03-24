@@ -1,4 +1,4 @@
-package com.services.webservice.library;
+package com.services.webservice.library.dto;
 
 import java.time.format.DateTimeFormatter;
 

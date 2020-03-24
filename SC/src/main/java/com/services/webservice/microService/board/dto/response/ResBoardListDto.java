@@ -1,6 +1,6 @@
-package com.services.webservice.service.dto.Board.Response;
+package com.services.webservice.microService.board.dto.response;
 
-import com.services.webservice.library.TimeFormatter;
+import com.services.webservice.library.dto.TimeFormatter;
 
 import lombok.Getter;
 import lombok.Setter;

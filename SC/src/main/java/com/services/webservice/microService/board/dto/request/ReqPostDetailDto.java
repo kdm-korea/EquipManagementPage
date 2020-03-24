@@ -1,4 +1,4 @@
-package com.services.webservice.service.dto.Board.Request;
+package com.services.webservice.microService.board.dto.request;
 
 import lombok.Builder;
 import lombok.Getter;

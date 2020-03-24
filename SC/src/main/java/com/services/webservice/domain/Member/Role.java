@@ -2,12 +2,8 @@ package com.services.webservice.domain.Member;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import com.services.webservice.domain.ERole;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.services.webservice.service.ComputerService;
+package com.services.webservice.microService.computer.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,10 +12,10 @@ import com.services.webservice.domain.Equipment.ComputerRepository;
 import com.services.webservice.domain.Equipment.EquipStateRepository;
 import com.services.webservice.domain.Member.MemberRepository;
 import com.services.webservice.domain.RentalLog.PCRentalLogRepository;
-import com.services.webservice.service.dto.Computer.Dao.PCRentalDao;
-import com.services.webservice.service.dto.Computer.Request.ReqComputerRentalDto;
-import com.services.webservice.service.dto.Computer.Request.ReqComputerReturnDto;
-import com.services.webservice.service.dto.Computer.Response.ResComputerListDto;
+import com.services.webservice.microService.computer.dto.adapter.PCRentalDao;
+import com.services.webservice.microService.computer.dto.request.ReqComputerRentalDto;
+import com.services.webservice.microService.computer.dto.request.ReqComputerReturnDto;
+import com.services.webservice.microService.computer.dto.response.ResComputerListDto;
 
 import lombok.AllArgsConstructor;
 

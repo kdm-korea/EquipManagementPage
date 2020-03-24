@@ -20,7 +20,6 @@ import com.services.webservice.domain.Member.MemberRepository;
 import com.services.webservice.service.MemberService.MemberService;
 import com.services.webservice.service.dto.Member.Request.ReqMemberInfoModiifedDto;
 import com.services.webservice.service.dto.SignUp.MemberSignUpDto;
-import com.services.webservice.service.dto.SignUp.MemberStudentNumChkDto;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -97,14 +96,12 @@ public class MemberServiceTest {
 
 	@Test
 	public void studentNumChkTest() {
-		MemberStudentNumChkDto dto = MemberStudentNumChkDto.builder()
-				.studentNum("2019636666")
-				.build();
+		String studentNum = "2019636666";
 
-		service.studentNumChk(dto);
+		service.studentNumChk(studentNum);
 
-		String findByStudentNum = memberRepo.findByStudentNum(dto.getStudentNum()).getStudentNum();
+		String findByStudentNum = memberRepo.findByStudentNum(studentNum).getStudentNum();
 
-		assertEquals(dto.getStudentNum(), findByStudentNum);
+		assertEquals(studentNum, findByStudentNum);
 	}
 }

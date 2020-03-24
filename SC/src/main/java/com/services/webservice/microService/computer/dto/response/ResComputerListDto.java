@@ -1,4 +1,4 @@
-package com.services.webservice.service.dto.Computer.Response;
+package com.services.webservice.microService.computer.dto.response;
 
 import com.services.webservice.domain.Equipment.Computer;
 

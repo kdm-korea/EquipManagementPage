@@ -1,4 +1,4 @@
-package com.services.webservice.service.dto.Computer.Dao;
+package com.services.webservice.microService.computer.dto.adapter;
 
 import java.time.LocalDateTime;
 

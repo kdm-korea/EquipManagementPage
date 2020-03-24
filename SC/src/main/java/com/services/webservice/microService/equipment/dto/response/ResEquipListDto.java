@@ -1,4 +1,4 @@
-package com.services.webservice.service.dto.Equip.Response;
+package com.services.webservice.microService.equipment.dto.response;
 
 import com.services.webservice.domain.Equipment.Equipment;
 

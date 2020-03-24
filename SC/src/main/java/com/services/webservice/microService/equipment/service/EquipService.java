@@ -1,4 +1,4 @@
-package com.services.webservice.service.EquipService;
+package com.services.webservice.microService.equipment.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,10 +12,10 @@ import com.services.webservice.domain.Equipment.EquipStateRepository;
 import com.services.webservice.domain.Equipment.EquipmentRepository;
 import com.services.webservice.domain.Member.MemberRepository;
 import com.services.webservice.domain.RentalLog.EquipRentalLogRepository;
-import com.services.webservice.service.dto.Equip.Dao.EquipRentalDao;
-import com.services.webservice.service.dto.Equip.Request.ReqEquipRentalDto;
-import com.services.webservice.service.dto.Equip.Request.ReqEquipReturnDto;
-import com.services.webservice.service.dto.Equip.Response.ResEquipListDto;
+import com.services.webservice.microService.equipment.dto.adapter.EquipRentalDao;
+import com.services.webservice.microService.equipment.dto.request.ReqEquipRentalDto;
+import com.services.webservice.microService.equipment.dto.request.ReqEquipReturnDto;
+import com.services.webservice.microService.equipment.dto.response.ResEquipListDto;
 
 import lombok.AllArgsConstructor;
 
@@ -40,6 +40,14 @@ public class EquipService {
 				.stream()
 				.filter(m-> m != null)
 				.map(ResEquipListDto::new)
+				.collect(Collectors.toList());
+	}
+	
+	public List<Object> rentalEquipList(long memberId) {
+		return equipLogRepo.findbyMemberRentalSameEquip(memberId)
+				.stream()
+				.filter(m -> m!=null)
+//				.map(ResEquipListDto::new)
 				.collect(Collectors.toList());
 	}
 

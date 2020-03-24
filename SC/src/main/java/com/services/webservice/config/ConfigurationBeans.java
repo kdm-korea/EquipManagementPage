@@ -1,4 +1,4 @@
-package com.services.webservice.security;
+package com.services.webservice.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
@@ -8,7 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
-import com.services.webservice.ExceptionHandler.ExceptionResponse;
+import com.services.webservice.exception.ExceptionResponse;
 
 import lombok.AllArgsConstructor;
 

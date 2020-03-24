@@ -1,14 +1,15 @@
-package com.services.webservice.service.dto.Board.Request;
-
-import com.services.webservice.domain.Member.Member;
+package com.services.webservice.microService.board.dto.request;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class ReqSavePostDto {
+	
 	private long memberId;
 	
 	private String title;

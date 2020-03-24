@@ -1,11 +1,8 @@
-package com.services.webservice.service.dto.Equip.Request;
+package com.services.webservice.microService.equipment.dto.request;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.services.webservice.library.TimeFormatter;
+import com.services.webservice.library.dto.TimeFormatter;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +10,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ReqEquipReturnDto extends TimeFormatter{
+public class ReqEquipReturnDto extends TimeFormatter {
 	
 	private long memberId;
 	

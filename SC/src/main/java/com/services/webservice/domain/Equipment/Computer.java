@@ -9,18 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.services.webservice.domain.BaseTimeEntity;
+import com.services.webservice.library.entity.BaseTimeEntity;
 
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-@ToString
 public class Computer extends BaseTimeEntity {
 
 	@Id

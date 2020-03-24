@@ -1,7 +1,5 @@
 package com.services.webservice.domain.Board;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.services.webservice.domain.BaseTimeEntity;
 import com.services.webservice.domain.Member.Member;
+import com.services.webservice.library.entity.BaseTimeEntity;
 
 import lombok.AccessLevel;
 import lombok.Builder;

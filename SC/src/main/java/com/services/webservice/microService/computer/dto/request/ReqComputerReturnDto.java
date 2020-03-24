@@ -1,8 +1,8 @@
-package com.services.webservice.service.dto.Computer.Request;
+package com.services.webservice.microService.computer.dto.request;
 
 import java.time.LocalDateTime;
 
-import com.services.webservice.library.TimeFormatter;
+import com.services.webservice.library.dto.TimeFormatter;
 
 import lombok.Builder;
 import lombok.Getter;

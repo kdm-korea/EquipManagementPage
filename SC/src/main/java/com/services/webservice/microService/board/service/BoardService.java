@@ -1,4 +1,4 @@
-package com.services.webservice.service.BoardService;
+package com.services.webservice.microService.board.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,15 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.services.webservice.ExceptionHandler.ExceptionClass.CustomNoArgsException;
 import com.services.webservice.domain.Board.Board;
 import com.services.webservice.domain.Board.BoardRepository;
-import com.services.webservice.domain.Member.Member;
 import com.services.webservice.domain.Member.MemberRepository;
-import com.services.webservice.service.dto.Board.Request.ReqPostDetailDto;
-import com.services.webservice.service.dto.Board.Request.ReqSavePostDto;
-import com.services.webservice.service.dto.Board.Response.ResBoardDetailDto;
-import com.services.webservice.service.dto.Board.Response.ResBoardListDto;
+import com.services.webservice.microService.board.dto.request.ReqPostDetailDto;
+import com.services.webservice.microService.board.dto.request.ReqSavePostDto;
+import com.services.webservice.microService.board.dto.response.ResBoardDetailDto;
+import com.services.webservice.microService.board.dto.response.ResBoardListDto;
 
 import lombok.AllArgsConstructor;
 

@@ -1,4 +1,4 @@
-package com.services.webservice.security;
+package com.services.webservice.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.services.webservice.service.MemberService.UserDetailServiceImpl;
+import com.services.webservice.microService.signInUp.service.UserDetailServiceImpl;
 
 import lombok.AllArgsConstructor;
 
@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //				.fail
 				.usernameParameter("loginStudentNum")
 				.passwordParameter("loginPassword")
-				.defaultSuccessUrl("/memeber/equip")
+				.defaultSuccessUrl("/member/equip")
 				.failureUrl("/")
 				.permitAll()
 			.and()

@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.services.webservice.domain.BaseTimeEntity;
+import com.services.webservice.library.entity.BaseTimeEntity;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -19,18 +19,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Getter
-public class Member extends BaseTimeEntity{
-	
+public class Member extends BaseTimeEntity {
+
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	@Column(unique = true, nullable = false)
 	private String studentNum;
 
 	@Column(nullable = false)
 	private String password;
-	
+
 	@Column(nullable = false)
 	private String name;
 
@@ -39,7 +39,7 @@ public class Member extends BaseTimeEntity{
 
 //	@ManyToOne(targetEntity = Equipment.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //	@JoinColumn(foreignKey = @ForeignKey(name = "fk_equitment_id"))
-	
+
 	@ManyToOne(targetEntity = Role.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_role_id"))
 	private Role role;

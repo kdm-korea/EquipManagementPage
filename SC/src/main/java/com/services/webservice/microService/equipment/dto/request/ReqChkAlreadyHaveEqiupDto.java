@@ -1,4 +1,4 @@
-package com.services.webservice.service.dto.Equip.Request;
+package com.services.webservice.microService.equipment.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;

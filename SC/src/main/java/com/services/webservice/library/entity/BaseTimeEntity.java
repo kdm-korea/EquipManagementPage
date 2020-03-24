@@ -1,4 +1,4 @@
-package com.services.webservice.domain;
+package com.services.webservice.library.entity;
 
 import java.time.LocalDateTime;
 
