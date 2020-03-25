@@ -38,6 +38,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	
+	implementation 'org.springframework.session:spring-session-core'
+	
 	compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.6'
 	
 
