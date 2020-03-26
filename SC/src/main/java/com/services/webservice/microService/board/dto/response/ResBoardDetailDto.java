@@ -6,7 +6,9 @@ import com.services.webservice.library.dto.TimeFormatter;
 import lombok.Setter;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Getter
 @Setter
 public class ResBoardDetailDto extends TimeFormatter {
