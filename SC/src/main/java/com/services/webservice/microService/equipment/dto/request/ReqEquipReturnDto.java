@@ -3,30 +3,21 @@ package com.services.webservice.microService.equipment.dto.request;
 import java.time.LocalDateTime;
 
 import com.services.webservice.library.dto.TimeFormatter;
+import com.sun.istack.NotNull;
 
-import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Getter
-@Setter
 public class ReqEquipReturnDto extends TimeFormatter {
 	
+	@NotNull
 	private long memberId;
 	
+	@NotNull
 	private long equipId;
 	
+	@NotNull
 	private LocalDateTime realReturnTime;
-
-	@Builder
-	public ReqEquipReturnDto(long memberId, long equipId, String realReturnTime) {
-		super();
-		this.memberId = memberId;
-		this.equipId = equipId;
-		this.realReturnTime = LocalDateTime.parse(realReturnTime, formatter);
-	}
-		
-	public void setRealReturnTime(String realReturnTime) {
-		this.realReturnTime = LocalDateTime.parse(realReturnTime, formatter);
-	}
 }
