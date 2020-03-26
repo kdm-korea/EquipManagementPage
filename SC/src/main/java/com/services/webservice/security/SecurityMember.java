@@ -10,13 +10,27 @@ import org.springframework.security.core.userdetails.User;
 import com.services.webservice.domain.Member.Member;
 import com.services.webservice.domain.Member.Role;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class SecurityMember extends User {
 
 	private static final String ROLE_PREFIX = "ROLE_";
 	private static final long serialVersionUID = 1L;
+	
+	private long id;
+	public String name;
+	public String phoneNumber;
 
 	public SecurityMember(Member member) {
 		super(member.getStudentNum(), member.getPassword(), makeGrantedAuthority(member.getRole()));
+		this.id = member.getId();
+		this.name = member.getName();
+		this.phoneNumber = member.getPhoneNumber();
 	}
 
 	private static List<GrantedAuthority> makeGrantedAuthority(Role roles) {
