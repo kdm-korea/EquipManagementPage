@@ -14,7 +14,7 @@ public interface EquipRentalLogRepository extends JpaRepository<EquipRentalLog, 
 			+ "where p.member.id = :memberId "
 			+ "and p.equip.id = :equipId "
 			+ "and p.realReturnTime = null")
-	void updateReturnEquip(@Param("memberId") long memberId, @Param("equipId") long equipId, @Param("realReturnTime") LocalDateTime realReturnTime);
+	int updateReturnEquip(@Param("memberId") long memberId, @Param("equipId") long equipId, @Param("realReturnTime") LocalDateTime realReturnTime);
 	
 	@Query("Select count(p) From EquipRentalLog p "
 			+ "where p.equip.id = :equipId "
