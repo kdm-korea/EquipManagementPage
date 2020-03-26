@@ -16,6 +16,7 @@ import com.services.webservice.microService.equipment.dto.adapter.EquipRentalDao
 import com.services.webservice.microService.equipment.dto.request.ReqEquipRentalDto;
 import com.services.webservice.microService.equipment.dto.request.ReqEquipReturnDto;
 import com.services.webservice.microService.equipment.dto.response.ResEquipListDto;
+import com.services.webservice.microService.equipment.dto.response.ResRentalEquipListDto;
 
 import lombok.AllArgsConstructor;
 
@@ -43,19 +44,19 @@ public class EquipService {
 				.collect(Collectors.toList());
 	}
 	
-	public List<Object> rentalEquipList(long memberId) {
-		return equipLogRepo.findbyMemberRentalSameEquip(memberId)
-				.stream()
-				.filter(m -> m!=null)
-//				.map(ResEquipListDto::new)
-				.collect(Collectors.toList());
+	public List<ResRentalEquipListDto> rentalEquipList(String studentNum) {
+		return equipLogRepo.findbyMemberRentalSameEquip(memberRepo.findByStudentNum(studentNum).getId())
+			.stream()
+			.filter(m -> m!=null)
+			.map(ResRentalEquipListDto::new)
+			.collect(Collectors.toList());
 	}
 
 	@Transactional
-	public void equipRent(ReqEquipRentalDto dto) throws NullPointerException {
-		// 이 사람이 이 물건과 같은 물건을 빌린 적이 있는지
+	public boolean equipRent(ReqEquipRentalDto dto) throws Exception {
 		if (equipLogRepo.findbyMemberRentalSameEquipCount(dto.getMemberId(), dto.getEquipId()) > 0) {
-			// Message: 이미 같은 기자재를 빌리는 중입니다.		
+			// Message: 이미 같은 기자재를 빌리는 중입니다.	
+			return false;
 		} 
 		else {
 			equipLogRepo.save(EquipRentalDao.builder()
@@ -70,16 +71,19 @@ public class EquipService {
 					.toEntity());
 			
 			equipRepo.updatebyRentalEquip(dto.getEquipId(), equipStateRepo.findByState(EState.USE.getValue()));
-			//Message: 완료되었습니다.
+			return true;
 		}
 	}
 	
 	@Transactional
-	public void equipReturn(ReqEquipReturnDto dto) throws NullPointerException{ 
-		equipLogRepo.updateReturnEquip(dto.getMemberId(), 
+	public boolean equipReturn(ReqEquipReturnDto dto) {// throws NullPointerException{ 
+		int count = equipLogRepo.updateReturnEquip(dto.getMemberId(), 
 				dto.getEquipId(), 
 				dto.getRealReturnTime());
-		
-		equipRepo.updatebyRentalEquip(dto.getEquipId(), equipStateRepo.findByState(EState.ACTIVATE.getValue()));
+		if(count == 1) {
+			equipRepo.updatebyRentalEquip(dto.getEquipId(), equipStateRepo.findByState(EState.ACTIVATE.getValue()));
+			return true;
+		}
+		return false;		
 	}
 }
