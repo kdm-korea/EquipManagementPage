@@ -1,5 +1,7 @@
 package com.services.webservice.config;
 
+import java.security.Principal;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +16,7 @@ import lombok.AllArgsConstructor;
 
 @Configuration
 @AllArgsConstructor
-public class ConfigurationBeans {
+public class BeansConfig {
 	
 	@Bean
 	public ModelMapper modelMapper() {
