@@ -16,10 +16,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.services.webservice.domain.Equipment.EquipmentRepository;
 import com.services.webservice.domain.RentalLog.EquipRentalLogRepository;
-import com.services.webservice.service.EquipService.EquipService;
-import com.services.webservice.service.dto.Equip.Request.ReqEquipRentalDto;
-import com.services.webservice.service.dto.Equip.Request.ReqEquipReturnDto;
-import com.services.webservice.service.dto.Equip.Response.ResEquipListDto;
+import com.services.webservice.microService.equipment.dto.request.ReqEquipRentalDto;
+import com.services.webservice.microService.equipment.dto.request.ReqEquipReturnDto;
+import com.services.webservice.microService.equipment.dto.response.ResEquipListDto;
+import com.services.webservice.microService.equipment.dto.response.ResRentalEquipListDto;
+import com.services.webservice.microService.equipment.service.EquipService;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -82,6 +83,29 @@ public class EquipServiceTest {
 		
 		assertEquals("Test", reason);
 		assertEquals("USE", state);
+	}
+	
+	@Test
+	public void rentalEquipListTest() {
+		equipService.equipRent(ReqEquipRentalDto.builder()
+				.memberId(0)
+				.equipId(0)
+				.reason("테스트0")
+				.rentalTime(LocalDateTime.now())
+				.predictReturnTime(LocalDateTime.now())
+				.build());
+		
+		equipService.equipRent(ReqEquipRentalDto.builder()
+				.memberId(0)
+				.equipId(1)
+				.reason("테스트1")
+				.rentalTime(LocalDateTime.now())
+				.predictReturnTime(LocalDateTime.now())
+				.build());
+		
+		List<ResRentalEquipListDto> list = equipService.rentalEquipList("2019631001");
+		
+		assertEquals(list.get(0).getReason(), "테스트0");
 	}
 	
 	@Test
