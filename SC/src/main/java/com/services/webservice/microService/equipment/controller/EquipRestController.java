@@ -1,6 +1,9 @@
 package com.services.webservice.microService.equipment.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +40,7 @@ public class EquipRestController {
 	}
 
 	@PostMapping("/return")
-	public RestResponseBaseDto equipRetrun(@RequestBody ReqEquipReturnDto dto) {
+	public RestResponseBaseDto<?> equipRetrun(@RequestBody @Valid ReqEquipReturnDto dto) {
 		if(service.equipReturn(dto)) {
 			return RestResponseBaseDto.builder()
 					.result(true)
