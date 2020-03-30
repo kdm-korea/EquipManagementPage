@@ -1,4 +1,4 @@
-package com.services.webservice.config;
+package com.services.webservice.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -35,8 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				// 페이지 권한설정
-				.antMatchers("/admin/**").hasRole("ADMIN")
-				.antMatchers("/member/**").hasRole("MEMBER")
+//				.antMatchers("/admin/**").hasRole("ADMIN")
+//				.antMatchers("/member/**").hasRole("MEMBER")
 				.antMatchers("/**").permitAll()
 				.anyRequest().permitAll()
 			.and()
