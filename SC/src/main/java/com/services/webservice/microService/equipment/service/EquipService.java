@@ -54,7 +54,9 @@ public class EquipService {
 
 	@Transactional
 	public boolean equipRent(ReqEquipRentalDto dto) throws Exception {
-		if (equipLogRepo.findbyMemberRentalSameEquipCount(dto.getMemberId(), dto.getEquipId()) > 0) {
+		String equipName = equipRepo.getOne(dto.getEquipId()).getEquipName();
+		
+		if (equipLogRepo.findbyMemberRentalSameEquipCount(dto.getMemberId(), equipName) > 0) {
 			// Message: 이미 같은 기자재를 빌리는 중입니다.	
 			return false;
 		} 
