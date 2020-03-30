@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
-public class ReqEquipReturnDto extends TimeFormatter {
+public class ReqEquipReturnDto {
 	
 	@NotNull
 	private long memberId;
