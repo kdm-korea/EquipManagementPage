@@ -17,11 +17,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.services.webservice.domain.Board.Board;
 import com.services.webservice.domain.Board.BoardRepository;
 import com.services.webservice.domain.Member.MemberRepository;
-import com.services.webservice.service.BoardService.BoardService;
-import com.services.webservice.service.dto.Board.Request.ReqPostDetailDto;
-import com.services.webservice.service.dto.Board.Request.ReqSavePostDto;
-import com.services.webservice.service.dto.Board.Response.ResBoardDetailDto;
-import com.services.webservice.service.dto.Board.Response.ResBoardListDto;
+import com.services.webservice.microService.board.dto.request.ReqPostDetailDto;
+import com.services.webservice.microService.board.dto.request.ReqSavePostDto;
+import com.services.webservice.microService.board.dto.response.ResBoardDetailDto;
+import com.services.webservice.microService.board.dto.response.ResBoardListDto;
+import com.services.webservice.microService.board.service.BoardService;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest

@@ -17,9 +17,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.services.webservice.domain.ERole;
 import com.services.webservice.domain.Member.Member;
 import com.services.webservice.domain.Member.MemberRepository;
-import com.services.webservice.service.MemberService.MemberService;
-import com.services.webservice.service.dto.Member.Request.ReqMemberInfoModiifedDto;
-import com.services.webservice.service.dto.SignUp.MemberSignUpDto;
+import com.services.webservice.microService.signInUp.dto.request.ReqMemberInfoModiifedDto;
+import com.services.webservice.microService.signInUp.dto.request.ReqMemberSignUpDto;
+import com.services.webservice.microService.signInUp.service.MemberService;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -62,7 +62,7 @@ public class MemberServiceTest {
 
 	@Test
 	public void signUpTest() {
-		MemberSignUpDto dto = MemberSignUpDto.builder()
+		ReqMemberSignUpDto dto = ReqMemberSignUpDto.builder()
 				.studentNum("2019631111")
 				.password("1234")
 				.name("테스트")

@@ -22,10 +22,10 @@ import com.services.webservice.domain.Equipment.ComputerRepository;
 import com.services.webservice.domain.Equipment.EquipStateRepository;
 import com.services.webservice.domain.RentalLog.PCRentalLog;
 import com.services.webservice.domain.RentalLog.PCRentalLogRepository;
-import com.services.webservice.service.ComputerService.ComputerService;
-import com.services.webservice.service.dto.Computer.Request.ReqComputerRentalDto;
-import com.services.webservice.service.dto.Computer.Request.ReqComputerReturnDto;
-import com.services.webservice.service.dto.Computer.Response.ResComputerListDto;
+import com.services.webservice.microService.computer.dto.request.ReqComputerRentalDto;
+import com.services.webservice.microService.computer.dto.request.ReqComputerReturnDto;
+import com.services.webservice.microService.computer.dto.response.ResComputerListDto;
+import com.services.webservice.microService.computer.service.ComputerService;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest

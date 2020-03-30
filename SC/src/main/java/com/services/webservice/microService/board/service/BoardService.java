@@ -65,7 +65,6 @@ public class BoardService {
 
 	@Transactional
 	public void delete(long no) {
-		
 		boardRepo.deleteById(no);
 	}
 }
