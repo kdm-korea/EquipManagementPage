@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class RestResponseBaseDto<T> {
+public class RestResponse<T> {
 	
 	private LocalDateTime timestamp;
 	
@@ -17,7 +17,7 @@ public class RestResponseBaseDto<T> {
 	private T data;
 
 	@Builder
-	public RestResponseBaseDto(boolean result, String msg, T data) {
+	public RestResponse(boolean result, String msg, T data) {
 		this.timestamp = LocalDateTime.now();
 		this.result = result;
 		this.msg = msg;
