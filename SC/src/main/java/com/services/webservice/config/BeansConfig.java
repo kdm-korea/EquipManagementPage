@@ -32,9 +32,4 @@ public class BeansConfig {
 	public ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
 		return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(new HttpSessionEventPublisher());
 	}
-	
-	@Bean
-	public ExceptionResponse exceptionResponse() {
-		return new ExceptionResponse();
-	}
 }
