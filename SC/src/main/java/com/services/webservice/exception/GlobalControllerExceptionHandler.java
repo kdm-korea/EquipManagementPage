@@ -1,11 +1,10 @@
 package com.services.webservice.exception;
 
-import java.time.LocalDateTime;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.UnexpectedTypeException;
 
-import javax.servlet.annotation.HttpConstraint;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -16,21 +15,34 @@ import com.services.webservice.exception.ExceptionClass.CustomNoArgsException;
 @RestController
 @ControllerAdvice
 public class GlobalControllerExceptionHandler {
-
-	@Autowired
-	private ExceptionResponse response;	
 	
 	@ExceptionHandler(CustomNoArgsException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	public ExceptionResponse noHaveArgsHandler(CustomNoArgsException e) throws Exception {
-		response.setMessage(e.getMessage());
-		response.setPath("");
-		return response;
+	public ExceptionResponse noHaveArgsHandler(Exception e, HttpServletRequest request) {
+		return ExceptionResponse.builder()
+			.message(e.getMessage())
+		 	.path(request.getRequestURL().toString())
+		 	.error("noHaveArgsHandler")
+		 	.build();
 	}
 	
-//	@ExceptionHandler(CustomAlreadyHaveSameEquip.class)
-//	@ResponseStatus(code = HttpStatus.)
-//	public ExceptionResponse alReadyHaveSameEquip(CustomAlreadyHaveSameEquip e) {
-//		
-//	}
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ExceptionResponse noTypeMatch(Exception e, HttpServletRequest request) {
+		return ExceptionResponse.builder()
+				.message(e.getMessage())
+				.path(request.getRequestURL().toString())
+			 	.error("noTypeMatch")
+			 	.build();
+	}
+	
+	@ExceptionHandler(UnexpectedTypeException.class)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ExceptionResponse notPassValidation(Exception e, HttpServletRequest request) {
+		return ExceptionResponse.builder()
+				.message(e.getMessage())
+				.path(request.getRequestURL().toString())
+			 	.error("notPassValidation")
+			 	.build();
+	}
 }
