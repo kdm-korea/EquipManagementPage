@@ -2,17 +2,23 @@ package com.services.webservice.microService.computer.dto.request;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.services.webservice.library.dto.TimeFormatter;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor
 @Getter
 @Setter
 public class ReqComputerRentalDto extends TimeFormatter {
+	@NotEmpty
 	private long memberId;
 
+	@NotEmpty
 	private long pcId;
 
 	private LocalDateTime rentalTime;
