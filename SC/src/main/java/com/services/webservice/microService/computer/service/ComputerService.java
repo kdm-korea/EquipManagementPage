@@ -15,6 +15,7 @@ import com.services.webservice.domain.RentalLog.PCRentalLogRepository;
 import com.services.webservice.microService.computer.dto.adapter.PCRentalDao;
 import com.services.webservice.microService.computer.dto.request.ReqComputerRentalDto;
 import com.services.webservice.microService.computer.dto.request.ReqComputerReturnDto;
+import com.services.webservice.microService.computer.dto.request.ResRentalPcListDto;
 import com.services.webservice.microService.computer.dto.response.ResComputerListDto;
 
 import lombok.AllArgsConstructor;
@@ -35,6 +36,7 @@ public class ComputerService {
 	@Autowired
 	private EquipStateRepository stateRepo;
 	
+	@Transactional(readOnly = true)
 	public List<ResComputerListDto> pcList() {
 		return computerRepo.findAllbyAvailable()
 			.stream()
@@ -42,33 +44,42 @@ public class ComputerService {
 			.map(ResComputerListDto::new)
 			.collect(Collectors.toList());
 	}
+	
+	@Transactional(readOnly = true)
+	public List<ResRentalPcListDto> rentalPcList(long memberId) {
+		return pclogRepo.findbyMemberHaveRentalPc(memberId)
+			.stream()
+			.filter(m -> m != null)
+			.map(ResRentalPcListDto::new)
+			.collect(Collectors.toList());
+	}
 
 	@Transactional
-	public void pcRent(ReqComputerRentalDto dto) {
-		if(pclogRepo.findbyMemberRentalPCCount(dto.getMemberId()) > 0) {
-			
+	public boolean pcRent(ReqComputerRentalDto dto) throws Exception {
+		if(pclogRepo.findbyMemberRentalPcCount(dto.getMemberId()) > 0) {
+			return false;
 		}
-		else {
-			pclogRepo.save(PCRentalDao.builder()
-					.memberId(memberRepo
-							.getOne(dto.getMemberId()))
-					.pcId(computerRepo
-							.getOne(dto.getPcId()))
-					.rentalTime(dto.getRentalTime())
-					.predictReturnTime(dto.getPredictReturnTime())
-					.reason(dto.getReason())
-					.build()
-					.toEntity());
-			
-			computerRepo.updatebyRentalPC(dto.getPcId(), stateRepo.findByState(EState.USE.getValue()));
-		}
+		
+		pclogRepo.save(PCRentalDao.builder()
+				.memberId(memberRepo.getOne(dto.getMemberId()))
+				.pcId(computerRepo.getOne(dto.getPcId()))
+				.rentalTime(dto.getRentalTime())
+				.predictReturnTime(dto.getPredictReturnTime())
+				.reason(dto.getReason())
+				.build()
+				.toEntity());
+		
+		computerRepo.updatebyRentalPC(dto.getPcId(), stateRepo.findByState(EState.USE.getValue()));
+		return true;
 	}
 	
 	@Transactional
-	public void pcReturn(ReqComputerReturnDto dto) {
-			pclogRepo.updateReturnPC(dto.getMemberId(), dto.getPcId(), dto.getRealReturnTime());
-			
+	public boolean pcReturn(ReqComputerReturnDto dto) {
+			if(pclogRepo.updateReturnPc(dto.getMemberId(), dto.getPcId(), dto.getRealReturnTime()) != 1) {
+				return false;
+			}
 			computerRepo.updatebyRentalPC(dto.getPcId(), stateRepo.findByState(EState.ACTIVATE.getValue()));
+			return true;
 	}
 
 }
