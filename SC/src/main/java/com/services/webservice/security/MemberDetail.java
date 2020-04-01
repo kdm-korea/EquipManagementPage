@@ -17,7 +17,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class SecurityMember extends User {
+public class MemberDetail extends User {
 
 	private static final String ROLE_PREFIX = "ROLE_";
 	private static final long serialVersionUID = 1L;
@@ -26,7 +26,7 @@ public class SecurityMember extends User {
 	public String name;
 	public String phoneNumber;
 
-	public SecurityMember(Member member) {
+	public MemberDetail(Member member) {
 		super(member.getStudentNum(), member.getPassword(), makeGrantedAuthority(member.getRole()));
 		this.id = member.getId();
 		this.name = member.getName();
