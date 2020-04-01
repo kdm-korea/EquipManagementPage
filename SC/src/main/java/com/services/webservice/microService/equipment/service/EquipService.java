@@ -44,8 +44,8 @@ public class EquipService {
 				.collect(Collectors.toList());
 	}
 	
-	public List<ResRentalEquipListDto> rentalEquipList(String studentNum) {
-		return equipLogRepo.findbyMemberRentalSameEquip(memberRepo.findByStudentNum(studentNum).getId())
+	public List<ResRentalEquipListDto> rentalEquipList(long memberId) {
+		return equipLogRepo.findByMemberRentalEquip(memberId)
 			.stream()
 			.filter(m -> m!=null)
 			.map(ResRentalEquipListDto::new)
@@ -56,7 +56,7 @@ public class EquipService {
 	public boolean equipRent(ReqEquipRentalDto dto) throws Exception {
 		String equipName = equipRepo.getOne(dto.getEquipId()).getEquipName();
 		
-		if (equipLogRepo.findbyMemberRentalSameEquipCount(dto.getMemberId(), equipName) > 0) {
+		if (equipLogRepo.findByMemberRentalSameEquipCount(dto.getMemberId(), equipName) > 0) {
 			// Message: 이미 같은 기자재를 빌리는 중입니다.	
 			return false;
 		} 
