@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.services.webservice.domain.Member.Member;
 import com.services.webservice.domain.Member.MemberRepository;
-import com.services.webservice.security.SecurityMember;
+import com.services.webservice.security.MemberDetail;
 
 import lombok.AllArgsConstructor;
 
@@ -25,6 +25,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
 			if(memberEntity == null) {
 				throw new UsernameNotFoundException(studentNum);
 			}
-			return new SecurityMember(memberEntity);
+			return new MemberDetail(memberEntity);
 	}
 }
