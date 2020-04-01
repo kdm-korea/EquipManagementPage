@@ -16,16 +16,16 @@ public class ResComputerListDto {
 	
 	private String equipNum;
 	
-	private boolean isAvailable;
+	private String state;
 
 	@Builder
-	public ResComputerListDto(Long pcId, String className, int pcSeqNum, String equipNum, boolean isAvailable) {
+	public ResComputerListDto(Long pcId, String className, int pcSeqNum, String equipNum, String state) {
 		super();
 		this.pcId = pcId;
 		this.className = className;
 		this.pcSeqNum = pcSeqNum;
 		this.equipNum = equipNum;
-		this.isAvailable = isAvailable;
+		this.state = state;
 	}
 	
 	public ResComputerListDto(Computer entity) {
@@ -33,6 +33,6 @@ public class ResComputerListDto {
 		this.className = entity.getClassName();
 		this.pcSeqNum = entity.getPcSeqNum();
 		this.equipNum = entity.getEquipNum();
-		this.isAvailable = entity.isAvailable();
+		this.state = entity.getEquipState().getState();
 	}
 }
