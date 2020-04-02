@@ -32,7 +32,7 @@ public class BoardService {
 	private ModelMapper modelMapper;
 	
 	public List<ResBoardListDto> list() {		
-		return boardRepo.findAll()
+		return boardRepo.findAllByOrderByIdDesc()
 			.stream()
 			.filter(m->m!=null)
 			.map(m-> modelMapper.map(m, ResBoardListDto.class))
