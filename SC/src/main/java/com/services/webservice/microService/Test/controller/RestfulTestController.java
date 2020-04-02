@@ -73,6 +73,6 @@ public class RestfulTestController {
 	
 	@GetMapping("equip")
 	public List<ResRentalEquipListDto> test() {
-		return equipService.rentalEquipList("2019631002");
+		return equipService.rentalEquipList(0);
 	}
 }
