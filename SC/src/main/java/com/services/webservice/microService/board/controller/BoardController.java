@@ -26,6 +26,11 @@ public class BoardController {
 		return "board/board";
 	}
 	
+	@GetMapping("/post")
+	public String postPage(Model model) {
+		return "board/post";
+	}
+	
 	@GetMapping("/post/{no}")
 	public String detail(@PathVariable("no")long no, Model model) {
 		model.addAttribute("detail", service.detail(no));
