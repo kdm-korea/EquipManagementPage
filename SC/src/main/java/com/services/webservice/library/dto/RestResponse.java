@@ -10,16 +10,16 @@ public class RestResponse<T> {
 	
 	private LocalDateTime timestamp;
 	
-	private boolean result;
+	private int code;
 	
 	private String msg;
 	
-	private T data;
+	private T data = null;
 
 	@Builder
-	public RestResponse(boolean result, String msg, T data) {
+	public RestResponse(int code, String msg, T data) {
 		this.timestamp = LocalDateTime.now();
-		this.result = result;
+		this.code = code;
 		this.msg = msg;
 		this.data = data;
 	}
