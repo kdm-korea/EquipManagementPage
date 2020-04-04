@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.services.webservice.library.dto.RestResponse;
 import com.services.webservice.microService.board.dto.request.ReqPostDetailDto;
 import com.services.webservice.microService.board.dto.request.ReqSavePostDto;
 import com.services.webservice.microService.board.dto.response.ResBoardDetailDto;
@@ -29,11 +30,6 @@ public class BoardRestController {
 
 	@Autowired
 	private BoardService service;
-	
-	@GetMapping("/post/{no}")
-	public ResBoardDetailDto detail(@PathVariable("no")long no) {
-		return service.detail(no);
-	}
 
 	@PostMapping("/post")
 	public Long create(@RequestBody @Valid ReqSavePostDto dto) {
