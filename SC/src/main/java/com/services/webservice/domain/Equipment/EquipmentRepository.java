@@ -15,8 +15,8 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long>{
 	List<Equipment> findAllbyOrderByDesc();
 	
 	@Modifying
-	@Query("Update Equipment e set e.isAvailable = false, e.equipState = :equipState Where e.id = :equipId")
-	void updatebyRentalEquip(@Param("equipId") long equipNum, @Param("equipState")EquipState equipState);
+	@Query("Update Equipment e set e.isAvailable = :isAvailable, e.equipState = :equipState Where e.id = :equipId")
+	void updatebyRentalEquip(@Param("equipId") long equipNum, @Param("equipState")EquipState equipState, @Param("isAvailable")boolean isAvailable);
 
 	Equipment findByEquipNum(String equipNum);
 }
