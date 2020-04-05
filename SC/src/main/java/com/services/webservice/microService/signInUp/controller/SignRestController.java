@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.services.webservice.library.dto.RestResponse;
+import com.services.webservice.microService.signInUp.dto.request.ReqMemberInfoModiifedDto;
 import com.services.webservice.microService.signInUp.dto.request.ReqMemberSignUpDto;
 import com.services.webservice.microService.signInUp.service.MemberService;
 
@@ -35,5 +37,20 @@ public class SignRestController {
 //			throws Exception
 		}
 		return memberService.studentNumChk(studentNum);
+	}
+	
+	@PostMapping("/modifiedPw")
+	public RestResponse<?> modifiedPw(@RequestBody ReqMemberInfoModiifedDto dto){
+		if(memberService.modifiedPw(dto) == 1) {
+			return RestResponse.builder()
+					.code(1)
+					.msg("완료되었습니다")
+					.build();
+		}else {
+			return RestResponse.builder()
+					.code(0)
+					.msg("실패하였습니다")
+					.build();
+		}
 	}
 }
