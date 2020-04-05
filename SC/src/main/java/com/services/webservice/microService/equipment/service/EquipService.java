@@ -1,5 +1,6 @@
 package com.services.webservice.microService.equipment.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,7 +46,7 @@ public class EquipService {
 	}
 	
 	public List<ResRentalEquipListDto> rentalEquipList(long memberId) {
-		return equipLogRepo.findByMemberRentalEquip(memberId)
+		return equipLogRepo.findbyMemberRentalEquip(memberId)
 			.stream()
 			.filter(m -> m!=null)
 			.map(ResRentalEquipListDto::new)
@@ -55,9 +56,7 @@ public class EquipService {
 	@Transactional
 	public boolean equipRent(ReqEquipRentalDto dto) throws Exception {
 		String equipName = equipRepo.getOne(dto.getEquipId()).getEquipName();
-		
-		if (equipLogRepo.findByMemberRentalSameEquipCount(dto.getMemberId(), equipName) > 0) {
-			// Message: 이미 같은 기자재를 빌리는 중입니다.	
+		if (equipLogRepo.findbyMemberRentalSameEquipCount(dto.getMemberId(), equipName) > 0) {
 			return false;
 		} 
 		else {
@@ -72,18 +71,18 @@ public class EquipService {
 					.build()
 					.toEntity());
 			
-			equipRepo.updatebyRentalEquip(dto.getEquipId(), equipStateRepo.findByState(EState.USE.getValue()));
+			equipRepo.updatebyRentalEquip(dto.getEquipId(), equipStateRepo.findByState(EState.USE.getValue()), false);
 			return true;
 		}
 	}
 	
 	@Transactional
-	public boolean equipReturn(ReqEquipReturnDto dto) {// throws NullPointerException{ 
+	public boolean equipReturn(ReqEquipReturnDto dto) { 
 		int count = equipLogRepo.updateReturnEquip(dto.getMemberId(), 
 				dto.getEquipId(), 
-				dto.getRealReturnTime());
+				LocalDateTime.now());
 		if(count == 1) {
-			equipRepo.updatebyRentalEquip(dto.getEquipId(), equipStateRepo.findByState(EState.ACTIVATE.getValue()));
+			equipRepo.updatebyRentalEquip(dto.getEquipId(), equipStateRepo.findByState(EState.ACTIVATE.getValue()), true);
 			return true;
 		}
 		return false;		
