@@ -29,4 +29,9 @@ public class SignController {
 	public String dispDenied() {
 		return "/denied";
 	}
+	
+	@GetMapping("/member/info")
+	public String getMyPage() {
+		return "/member/mypage";
+	}
 }
