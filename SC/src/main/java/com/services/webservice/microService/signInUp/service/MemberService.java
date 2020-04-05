@@ -37,11 +37,11 @@ public class MemberService {
 	}
 
 	@Transactional
-	public void modifiedPw(ReqMemberInfoModiifedDto dto) {
-		if (passwordEncoder.matches(dto.getPassword(), memberRepo.getOne(dto.getId()).getPassword())) {
-			memberRepo.updatePw(passwordEncoder.encode(dto.getNewPassword()), dto.getId());
+	public int modifiedPw(ReqMemberInfoModiifedDto dto) {
+		if (passwordEncoder.matches(dto.getPassword(), memberRepo.getOne(dto.getMemberId()).getPassword())) {
+			return memberRepo.updatePw(passwordEncoder.encode(dto.getNewPassword()), dto.getMemberId());
 		}else {
-			
+			return -1;
 		}
 	}
 
