@@ -28,12 +28,12 @@ public class EquipRestController {
 	public RestResponse<?> equipRent(@RequestBody @Valid ReqEquipRentalDto dto) throws Exception {
 		if(service.equipRent(dto)) {
 			return RestResponse.builder()
-				.result(true)
-				.msg("Success")
+				.code(1)
+				.msg("저장되었습니다.")
 				.build();
 		}else {
 			return RestResponse.builder()
-				.result(false)
+				.code(0)
 				.msg("이미 같은 종류의 기자재를 빌리고 있습니다.")
 				.build();
 		}
@@ -43,13 +43,13 @@ public class EquipRestController {
 	public RestResponse<?> equipRetrun(@RequestBody @Valid ReqEquipReturnDto dto) {
 		if(service.equipReturn(dto)) {
 			return RestResponse.builder()
-					.result(true)
-					.msg("Success")
+					.code(1)
+					.msg("저장되었습니다.")
 					.build();
 		}
 		else {
 			return RestResponse.builder()
-					.result(false)
+					.code(0)
 					.msg("빌린 물품이 없습니다.")
 					.build();
 		}
