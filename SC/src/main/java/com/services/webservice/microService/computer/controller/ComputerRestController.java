@@ -25,13 +25,13 @@ public class ComputerRestController {
 	public RestResponse<?> computerRent(@RequestBody @Valid ReqComputerRentalDto dto) throws Exception {
 		if (service.pcRent(dto)) {
 			return RestResponse.builder()
-					.result(true)
-					.msg("Success")
+					.code(1)
+					.msg("저장되었습니다.")
 					.build();
 		} 
 		else {
 			return RestResponse.builder()
-					.result(false)
+					.code(0)
 					.msg("이미 같은 종류의 기자재를 빌리고 있습니다.")
 					.build();
 		}
@@ -41,13 +41,13 @@ public class ComputerRestController {
 	public RestResponse<?> computerReturn(@RequestBody @Valid ReqComputerReturnDto dto) {
 		if(service.pcReturn(dto)) {
 			return RestResponse.builder()
-					.result(true)
-					.msg("Success")
+					.code(1)
+					.msg("저장되었습니다.")
 					.build();
 		}
 		else {
 			return RestResponse.builder()
-					.result(false)
+					.code(0)
 					.msg("빌린 물품이 없습니다.")
 					.build();
 		}
