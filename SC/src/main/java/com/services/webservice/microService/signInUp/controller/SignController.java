@@ -34,4 +34,9 @@ public class SignController {
 	public String getMyPage() {
 		return "/member/mypage";
 	}
+	
+	@GetMapping("/login")
+	public String Login() {
+		return "redirect:/";
+	}
 }
