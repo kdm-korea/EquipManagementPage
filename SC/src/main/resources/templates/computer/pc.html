@@ -1,90 +1,73 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="module/html_layout">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>Dashboard Template for Bootstrap</title>
-
-<!-- Bootstrap core CSS -->
 <link href="../css/lib/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<nav class="navbar navbar-dark bg-dark navbar-fixed-top">
+	<th:block layout:fragment="content">
 
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<h2>
-					<a class="navbar-brand" href="#">Software Contents</a>
-				</h2>
-			</div>
-		</div>
-	</nav>
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<p></p>
+			<h1 class="page-header">랜트 컴퓨터 정보</h1>
 
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-3 col-md-2 sidebar">
-				<ul class="nav flex-column">
-					<li class="nav-item"><a class="nav-link active" href="/memeber/mypage">My
-							Page</a></li>
-					<li class="nav-item"><a class="nav-link" href="/memeber/equip">기자재 대여</a></li>
-					<li class="nav-item"><a class="nav-link" href="/memeber/computer">컴퓨터 사용</a></li>
-					<li class="nav-item"><a class="nav-link" href="/memeber/board">Q & A</a></li>
-					<li class="nav-item"><a class="nav-link"
-						sec:authorize="isAnonymous()" th:href="@{/}">로그인</a> <a
-						class="nav-link" sec:authorize="isAuthenticated()"
-						th:href="@{/logout}">로그아웃</a> <a class="nav-link"
-						sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/user/info}">내정보</a>
-						<a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')"
-						th:href="@{/admin}">어드민</a></li>
-					<!-- 
-					<li class="nav-item"><a class="nav-link disabled" href="#"
-						tabindex="-1" aria-disabled="true">Disabled</a></li>
-						 -->
-				</ul>
-			</div>
-
-			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h1 class="page-header">Dashboard</h1>
-
-				<div class="row placeholders">
-					<p>현재 내 로그 넣기</p>
-				</div>
-
+			<div class="row placeholders">
 				<!-- 기기정보 넣기 -->
-				<h2 class="sub-header">Section title</h2>
 				<div class="table-responsive">
-					<table class="table table-striped">
+					<table class="table table-hover" id="rentalequiplist">
 						<thead>
 							<tr>
 								<th>No.</th>
 								<th>기기명</th>
-								<th>기자재번호</th>
-								<th>일련번호</th>
-								<th>상태</th>
+								<th>대여일자</th>
+								<th>반납예정일자</th>
+								<th>사유</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="equip : ${equiplist}">
-								<td th:text="${equip.squNum}"></td>
-								<td th:text="${equip.equipName}"></td>
-								<td th:text="${equip.equipSeqNum}"></td>
-								<td th:text="${equip.equipNum}"></td>
-								<td th:text="${equip.equipState}"></td>
+							<tr th:each="rental : ${pcRentalList}">
+								<td th:text="${rental.id}"></td>
+								<td th:text="${rental.pcNum}"></td>
+								<td th:text="${rental.rentalTime}"></td>
+								<td th:text="${rental.predictReturnTime}"></td>
+								<td th:text="${rental.reason}"></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
-		</div>
-	</div>
 
-	<script src="../js/lib/jquery.min.js"></script>
-	<script src="../js/lib/bootstrap.js"></script>
+			<!-- 기기정보 넣기 -->
+			<h2 class="sub-header">사용가능 컴퓨터 리스트</h2>
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>기기명</th>
+							<th>기자재번호</th>
+							<th>일련번호</th>
+							<th>상태</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="pc : ${pclist}">
+							<td th:text="${pc.pcId}"></td>
+							<td th:text="${pc.className}"></td>
+							<td th:text="${pc.pcSeqNum}"></td>
+							<td th:text="${pc.equipNum}"></td>
+							<td th:text="${pc.state}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</th:block>
+
+	<th:block layout:fragment="pageCustomScript">
+		<script src="../js/lib/jquery.min.js"></script>
+		<script src="../js/lib/bootstrap.js"></script>
+	</th:block>
 </body>
 </html>
