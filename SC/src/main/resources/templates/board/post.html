@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="module/html_layout">
+<head>
+<link href="../../css/lib/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<th:block layout:fragment="content">
+
+		<div class="container">
+			<div class="row">
+
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+					<h1>글쓰기</h1>
+
+					<form id="postForm">
+						<div class="form-group">
+							<label for="title">Title <span class="require">*</span></label> <input
+								type="text" class="form-control" id="title" />
+						</div>
+
+						<div class="form-group">
+							<label for="contents">Contents <span class="require">*</span></label>
+							<textarea rows="10" class="form-control" id="contents"></textarea>
+						</div>
+
+						<div class="form-group">
+							<button type="button" class="btn btn-primary" id="post"
+								onclick="postSave()">Save</button>
+							<button type="reset" class="btn btn-default">Clear</button>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</th:block>
+
+	<th:block layout:fragment="pageCustomScript">
+		<script src="../../js/lib/jquery.min.js"></script>
+		<script src="../../js/lib/bootstrap.min.js"></script>
+		<script src="../../js/board/post.js"></script>
+	</th:block>
+</body>
+</html>
