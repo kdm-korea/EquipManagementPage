@@ -1,5 +1,6 @@
 package com.services.webservice.exception;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.UnexpectedTypeException;
 
