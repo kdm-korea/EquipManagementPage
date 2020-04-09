@@ -32,8 +32,8 @@ public class BoardController {
 	}
 	
 	@GetMapping("/post/{no}")
-	public String detail(@PathVariable("no")long no, Model model) {
-		model.addAttribute("detail", service.detail(no));
+	public String detail(@AuthenticationPrincipal MemberDetail member, @PathVariable("no")long no, Model model) {
+		model.addAttribute("detail", service.detail(member.getUsername(), no));
 		return "board/view";
 	}
 }
