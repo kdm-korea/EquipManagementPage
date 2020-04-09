@@ -40,8 +40,10 @@ public class BoardService {
 	}
 
 	@Transactional(readOnly = true)
-	public ResBoardDetailDto detail(long no) {
-		return modelMapper.map(boardRepo.getOne(no), ResBoardDetailDto.class);
+	public ResBoardDetailDto detail(String studentNum, long no) {
+		ResBoardDetailDto dto =  new ResBoardDetailDto(boardRepo.getOne(no));
+		dto.setWriter((studentNum == dto.getMemberStudentNum()) ? studentNum : "");
+		return dto;
 	}
 
 	@Transactional
