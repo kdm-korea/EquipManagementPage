@@ -69,7 +69,7 @@ public class ComputerService {
 				.build()
 				.toEntity());
 		
-		computerRepo.updatebyRentalPC(dto.getPcId(), stateRepo.findByState(EState.USE.getValue()));
+		computerRepo.updatebyRentalPC(dto.getPcId(), stateRepo.findByState(EState.USE.getValue()), false);
 		return true;
 	}
 	
@@ -78,7 +78,7 @@ public class ComputerService {
 			if(pclogRepo.updateReturnPc(dto.getMemberId(), dto.getPcId(), dto.getRealReturnTime()) != 1) {
 				return false;
 			}
-			computerRepo.updatebyRentalPC(dto.getPcId(), stateRepo.findByState(EState.ACTIVATE.getValue()));
+			computerRepo.updatebyRentalPC(dto.getPcId(), stateRepo.findByState(EState.ACTIVATE.getValue()), true);
 			return true;
 	}
 
