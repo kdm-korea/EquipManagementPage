@@ -28,6 +28,7 @@
 						<tbody>
 							<tr th:each="rental : ${pcRentalList}">
 								<td th:text="${rental.id}"></td>
+								<td th:text="${rental.pcClass}"></td>
 								<td th:text="${rental.pcNum}"></td>
 								<td th:text="${rental.rentalTime}"></td>
 								<td th:text="${rental.predictReturnTime}"></td>
