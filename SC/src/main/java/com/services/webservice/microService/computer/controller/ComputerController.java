@@ -31,6 +31,7 @@ public class ComputerController {
 
 	@GetMapping()
 	public String computer(@AuthenticationPrincipal MemberDetail member, Model model) {
+		
 		if(member != null) {
 			model.addAttribute("pcList", service.pcList());
 			model.addAttribute("pcRentalList", service.rentalPcList(member.getId()));
