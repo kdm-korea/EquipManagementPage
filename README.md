@@ -18,7 +18,7 @@
 
 ## 사용 기술
 __1. Spring boot 2.2.6 사용__
-    - yml, gradle
+- yml, gradle
 
 __2. H2 DB__
 
