@@ -1,38 +1,65 @@
-## SpringBoot로 한달안에 만들어 보자!
+# 학과 기자재 관리 페이지 제작
 
-### 학교 기자재 및 실습실 빌리는 것을 웹상에서 체크하고 빌릴수 있도록 하는 사이트
+- 학교 기자재 및 실습실 빌리는 것을 웹상에서 체크하고 빌릴수 있도록 하는 사이트
 
-### 문제
-1. 로그인 확인
+## 기능
+---
+1. 로그인, 회원가입, 로그아웃
+
 2. 실습실이랑 기자재 관리자와 사용자 사이트 구분체크
 
-관리자 페이지
-- 기자재 추가 제거(최소수량 갖고있어야 한다)
+3. 기자재 관리
+     - 상태(사용가능/사용불가/수리중)
+
+4. 실습실 컴퓨터 관리
     - 상태(사용가능/사용불가/수리중)
 
-- 실습실 컴퓨터 관리
-    - 상태(사용가능/사용불가/수리중)
+5. 문제 해결을 위한 게시판
+    - 기자재의 이상이나 문제 등 올리는 게시판
 
-- 시간표 추가 / 특정 일자 시간 사용금지 추가 기능
+## 사용 기술
+---
+1. Spring boot 2.2.6 사용
+    - yml, gradle
 
-- 관리자에게는 현재 사용하고 있는 사용자의 이름과 전화번호가 보이게 체크
+2. H2 DB
 
-[기자재]
-추가 - 기자재명, 기자재 일련번호, 사용가능여부
-사용자 - 기자재 번호, 힉번, 이름, 시간 (외부반출은 학과 사무실에서 진행)
+3. Jpa
+    - interface를 통한 기본적인 CRUD 사용
+    - `@Query`, `@Modifying` annotation을 사용하여 커스텀 쿼리 추가
+    - `@EntityListeners` annotation을 사용하여 필드 생성, 수정 TimeStamp 추가
+    - Table 제약조건 추가
+        - `@Column`, `@Id`, `@GenteratedValue`
+    - Table 구조 추가
+        - `@ManyToOne`, `@JoinColumn`
 
-위 프로젝트 하기 귀찮을때는 블로그 손보기
+4. lombok
+    - Entity Class에 `AccessLevel` 설정
+    - Entity Class에는 `@NoArgsConstructer` `@Entity`, `@Builder` 사용
+    - Controller Class에는 `@AllArgsConstructer` 사용
+    - DTO Class에는 `@Getter`, `@Builder` 사용
 
-1. 기자재 생성
-2. 기자재 랜트
-3. 기자재 수량 체크
-4. 
+5. Spring boot Security
+    - 로그인, 로그아웃, 회원가입 기능
+    - 로그인 후 세션을 사용하여 유저 관리
+    - 세션에는 사용자 정보 저장 후 사용
 
+6. Thymeleaf
+    - 뷰는 서버사이드를 사용
+    - `thymeleaf-layout-dialect`를 사용하여 layout를 나누어 관리
 
+7. ModelMapper
+    - 쿼리를 통해 반환된 Entity List를 Dto로 변환 시에 ModelMapper를 이용하여 형변환, 전부 변경하지 않음
 
+8. JUnit 5.0
+    - 테스트는 서비스단에서 테스트
 
-### TODO
-[ ] 로그인 크롤러 생성
-[ ] 기자재, 강의실 이용 추가 제작
-[ ] 시간표 넣을 수 있도록 제작
-[ ] 시간단위 
+9. @ControllerAdvice
+    - 에러 처리는 하나의 클래스에서 처리하였으며 `ExceptionResponse.class`를 만들어 구조화된 에러처리
+
+10. RestController
+   -  `RestResponse<T>.class`를 만들어 구조화된 방식으로 Json 리턴
+
+## DB 구조
+---
+   ![alt DataBase_Structure](img/DataBase_Structure.png)
