@@ -17,12 +17,12 @@
     - 기자재의 이상이나 문제 등 올리는 게시판
 
 ## 사용 기술
-1. Spring boot 2.2.6 사용
+__1. Spring boot 2.2.6 사용__
     - yml, gradle
 
-2. H2 DB
+__2. H2 DB__
 
-3. Jpa
+__3. Jpa__
     - interface를 통한 기본적인 CRUD 사용
     - `@Query`, `@Modifying` annotation을 사용하여 커스텀 쿼리 추가
     - `@EntityListeners` annotation을 사용하여 필드 생성, 수정 TimeStamp 추가
@@ -31,34 +31,34 @@
     - Table 구조 추가
         - `@ManyToOne`, `@JoinColumn`
 
-4. Lombok
+__4. Lombok__
     - Entity Class에 `AccessLevel` 설정
     - Entity Class에는 `@NoArgsConstructer` `@Entity`, `@Builder` 사용
     - Controller Class에는 `@AllArgsConstructer` 사용
     - DTO Class에는 `@Getter`, `@Builder` 사용
 
-5. Validation
+__5. Validation__
      - DTO 유효성 검사 추가
 
-6. Spring boot Security
+__6. Spring boot Security__
     - 로그인, 로그아웃, 회원가입 기능
     - 로그인 후 세션을 사용하여 유저 관리
     - 세션에는 사용자 정보 저장 후 사용
 
-7. Thymeleaf
+__7. Thymeleaf__
     - 뷰는 서버사이드를 사용
     - `thymeleaf-layout-dialect`를 사용하여 layout를 나누어 관리
 
-8. ModelMapper
+__8. ModelMapper__
     - 쿼리를 통해 반환된 Entity List를 Dto로 변환 시에 ModelMapper를 이용하여 형변환, 전부 변경하지 않음
 
-9. JUnit 5.0
+__9. JUnit 5.0__
     - 테스트는 서비스단에서 테스트
 
-10. @ControllerAdvice
+__10. @ControllerAdvice__
     - 에러 처리는 하나의 클래스에서 처리하였으며 `ExceptionResponse.class`를 만들어 구조화된 에러처리
 
-11. RestController
+__11. RestController__
    -  `RestResponse<T>.class`를 만들어 구조화된 방식으로 Json 리턴
 
 ## DB 구조
