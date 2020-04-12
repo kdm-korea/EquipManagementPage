@@ -46,7 +46,7 @@ __4. Lombok__
 - DTO Class에는 `@Getter`, `@Builder` 사용
 
 __5. Validation__
-    - DTO 유효성 검사 추가
+- DTO 유효성 검사 추가
 
 __6. Spring boot Security__
 - 로그인, 로그아웃, 회원가입 기능
