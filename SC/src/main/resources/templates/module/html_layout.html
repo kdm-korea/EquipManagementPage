@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block layout:fragment="../module/html_head">
+	<title>Dashboard Template for Bootstrap</title>
+	<link href="/css/lib/bootstrap.min.css" rel="stylesheet">
+</th:block>
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-dark navbar-fixed-top">
+
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<h2>
+					<a class="navbar-brand" href="#">Software Contents</a>
+				</h2>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+
+
+			<div class="col-sm-3 col-md-2 sidebar">
+				<div class="container" hidden="ture">
+					IdNum :
+					<text id="memberId" sec:authentication="principal.id">No</text>
+					<br> studentNum :
+					<text id="memberStudentNum" sec:authentication="principal.username">studentNum</text>
+					<br> Name :
+					<text id="memberName" sec:authentication="principal.name">name</text>
+					<br> Ph :
+					<text id="memberPh" sec:authentication="principal.phoneNumber">name</text>
+					<br>
+
+				</div>
+
+				<ul class="nav flex-column">
+					<li class="nav-item"><a class="nav-link" href="/member/equip">기자재
+							대여</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/member/computer">컴퓨터 사용</a></li>
+					<li class="nav-item"><a class="nav-link" href="/member/board">Q
+							& A</a></li>
+					<li class="nav-item"><a class="nav-link"
+						sec:authorize="isAnonymous()" th:href="@{/}">로그인</a> <a
+						class="nav-link" sec:authorize="isAuthenticated()"
+						th:href="@{/logout}">로그아웃</a> <a class="nav-link"
+						sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/member/info}">내정보</a>
+						<a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')"
+						th:href="@{/admin}">어드민</a></li>
+				</ul>
+			</div>
+
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<th:block layout:fragment="content"></th:block>
+			</div>
+		</div>
+	</div>
+	<script src="/js/lib/jquery.min.js"></script>
+	<script src="/js/lib/bootstrap.min.js"></script>
+	<th:block layout:fragment="pageCustomScript"></th:block>
+
+</body>
+</html>

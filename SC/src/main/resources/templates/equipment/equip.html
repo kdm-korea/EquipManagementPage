@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="module/html_layout">
+<head>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<p></p>
+		<h1 class="page-header">랜트 기자재 정보</h1>
+
+		<div class="row placeholders">
+			<!-- 기기정보 넣기 -->
+			<div class="table-responsive">
+				<table class="table table-hover" id="rentalequiplist">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>기기명</th>
+							<th>대여일자</th>
+							<th>반납예정일자</th>
+							<th>사유</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="rental : ${rentalequiplist}">
+							<td th:text="${rental.equipId}"></td>
+							<td th:text="${rental.equipName}"></td>
+							<td th:text="${rental.rentalTime}"></td>
+							<td th:text="${rental.predictReturnTime}"></td>
+							<td th:text="${rental.reason}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!-- 기기정보 넣기 -->
+		<h2 class="sub-header">사용가능 기자재 리스트</h2>
+		<div class="table-responsive">
+			<table class="table table-hover" id="equipList">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>기기명</th>
+						<th>기자재번호</th>
+						<th>일련번호</th>
+						<th>상태</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="equip : ${equiplist}">
+						<td th:text="${equip.id}"></td>
+						<td th:text="${equip.equipName}"></td>
+						<td th:text="${equip.equipSeqNum}"></td>
+						<td th:text="${equip.equipNum}"></td>
+						<td th:text="${equip.equipState}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</th:block>
+
+	<th:block layout:fragment="pageCustomScript">
+		<script src="/js/equip/equipRent.js"></script>
+		<script src="/js/equip/equipReturn.js"></script>
+	</th:block>
+</body>
+</html>

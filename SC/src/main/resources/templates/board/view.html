@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="module/html_layout">
+<head>
+</head>
+<body>
+	<th:block layout:fragment="content">
+
+		<div class="container">
+			<div class="row">
+
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<div class="container">
+						<h2 th:text="${detail.title}"></h2>
+						<hr>
+						<h4 th:text="${detail.contents}"></h4>
+						<text th:text="${detail.id}" id="postId" hidden="true"></text>
+						<div align="right">
+							<text th:text="${detail.memberStudentNum}"></text>
+							<text th:text="${detail.memberName}"></text>
+							<br>
+							<text th:text="${#strings.substring(detail.createdDate,0,10)}"></text>
+							<br> <a th:href="@{/member/board/modified/} + ${detail.id}">
+								<button class="btn btn-primary" th:if="${detail.writer != ''}">수정</button>
+							</a>
+							<button class="btn btn-primary" th:if="${detail.writer != ''}"
+								onclick="del()">삭제</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</th:block>
+
+	<th:block layout:fragment="pageCustomScript">
+		<script src="/js/board/delete.js"></script>
+	</th:block>
+</body>
+</html>

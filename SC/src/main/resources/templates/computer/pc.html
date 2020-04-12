@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="module/html_layout">
+<head>
+</head>
+<body>
+	<th:block layout:fragment="content">
+
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<p></p>
+			<h1 class="page-header">랜트 컴퓨터 정보</h1>
+
+			<div class="row placeholders">
+				<!-- 기기정보 넣기 -->
+				<div class="table-responsive">
+					<table class="table table-hover" id="rentalpclist">
+						<thead>
+							<tr>
+								<th>No.</th>
+								<th>호실</th>
+								<th>자리번호</th>
+								<th>대여일자</th>
+								<th>반납예정일자</th>
+								<th>사유</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="rental : ${pcRentalList}">
+								<td th:text="${rental.id}"></td>
+								<td th:text="${rental.pcClass}"></td>
+								<td th:text="${rental.pcNum}"></td>
+								<td th:text="${rental.rentalTime}"></td>
+								<td th:text="${rental.predictReturnTime}"></td>
+								<td th:text="${rental.reason}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<!-- 기기정보 넣기 -->
+			<h2 class="sub-header">사용가능 컴퓨터 리스트</h2>
+			<div class="table-responsive">
+				<table class="table table-hover" id="pcList">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>기기명</th>
+							<th>기자재번호</th>
+							<th>일련번호</th>
+							<th>상태</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="pc : ${pcList}">
+							<td th:text="${pc.pcId}"></td>
+							<td th:text="${pc.className}"></td>
+							<td th:text="${pc.pcSeqNum}"></td>
+							<td th:text="${pc.equipNum}"></td>
+							<td th:text="${pc.state}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</th:block>
+	<th:block layout:fragment="pageCustomScript">
+		<script src="/js/pc/pcRent.js"></script>
+		<script src="/js/pc/pcReturn.js"></script>
+	</th:block>
+</body>
+</html>

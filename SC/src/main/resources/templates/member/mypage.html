@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="module/html_layout">
+<head>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<p/>
+			<h1 class="page-header">비밀번호 변경</h1>
+			<form>
+				<div class="row placeholders">
+
+					<label for="exampleInputPassword1">Old Password</label> <input
+						type="password" class="form-control" id="oldPw"
+						placeholder="Password"> <label for="exampleInputPassword1">New
+						Password</label> <input type="password" class="form-control" id="newPw"
+						placeholder="Password">
+					<button type="button" class="btn btn-primary" onclick="modifiedPw()">저장하기</button>
+				</div>
+			</form>
+
+		</div>
+	</th:block>
+
+	<th:block layout:fragment="pageCustomScript">
+		<script src="../js/mypage/modifiedPw.js"></script>
+	</th:block>
+</body>
+</html>

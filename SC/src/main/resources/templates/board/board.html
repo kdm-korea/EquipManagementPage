@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="module/html_layout">
+<head>
+</head>
+<body>
+	<th:block layout:fragment="content">
+
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<p>
+			<h1 class="page-header">Q&A 게시판</h1>
+			<div align="right">
+				<a class="btn btn-primary" href="/member/board/post" role="button">글쓰기</a>
+			</div>
+			<table class="table table-hover" id="postlist">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>제목</th>
+						<th>작성일자</th>
+						<th>작성인</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="post : ${postList}">
+						<td th:text="${post.id}"></td>
+						<td th:text="${post.title}"></td>
+						<td th:text="${#strings.substring(post.createdDate,0,10)}"></td>
+						<td th:text="${post.memberName}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</th:block>
+
+	<th:block layout:fragment="pageCustomScript">
+		<script src="/js/board/view.js"></script>
+	</th:block>
+</body>
+</html>
