@@ -1,9 +1,9 @@
 package com.services.webservice.exception;
 
-import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.UnexpectedTypeException;
 
+import org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -45,5 +45,16 @@ public class GlobalControllerExceptionHandler {
 				.path(request.getRequestURL().toString())
 			 	.error("notPassValidation")
 			 	.build();
+	}
+	
+	@ExceptionHandler(JdbcSQLIntegrityConstraintViolationException.class)
+	@ResponseStatus(code = HttpStatus.EXPECTATION_FAILED)
+	public ExceptionResponse sqlException(Exception e, HttpServletRequest request) {
+		return ExceptionResponse.builder()
+				.message(e.getMessage())
+				.path(request.getRequestURL().toString())
+			 	.error("sqlException")
+			 	.build();
+		
 	}
 }
