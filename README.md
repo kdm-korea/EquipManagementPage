@@ -3,7 +3,6 @@
 - 학교 기자재 및 실습실 빌리는 것을 웹상에서 체크하고 빌릴수 있도록 하는 사이트
 
 ## 기능
----
 1. 로그인, 회원가입, 로그아웃
 
 2. 실습실이랑 기자재 관리자와 사용자 사이트 구분체크
@@ -18,7 +17,6 @@
     - 기자재의 이상이나 문제 등 올리는 게시판
 
 ## 사용 기술
----
 1. Spring boot 2.2.6 사용
     - yml, gradle
 
@@ -61,5 +59,4 @@
    -  `RestResponse<T>.class`를 만들어 구조화된 방식으로 Json 리턴
 
 ## DB 구조
----
    ![alt DataBase_Structure](img/DataBase_Structure.png)
