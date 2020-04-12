@@ -31,31 +31,34 @@
     - Table 구조 추가
         - `@ManyToOne`, `@JoinColumn`
 
-4. lombok
+4. Lombok
     - Entity Class에 `AccessLevel` 설정
     - Entity Class에는 `@NoArgsConstructer` `@Entity`, `@Builder` 사용
     - Controller Class에는 `@AllArgsConstructer` 사용
     - DTO Class에는 `@Getter`, `@Builder` 사용
 
-5. Spring boot Security
+5. Validation
+     - DTO 유효성 검사 추가
+
+6. Spring boot Security
     - 로그인, 로그아웃, 회원가입 기능
     - 로그인 후 세션을 사용하여 유저 관리
     - 세션에는 사용자 정보 저장 후 사용
 
-6. Thymeleaf
+7. Thymeleaf
     - 뷰는 서버사이드를 사용
     - `thymeleaf-layout-dialect`를 사용하여 layout를 나누어 관리
 
-7. ModelMapper
+8. ModelMapper
     - 쿼리를 통해 반환된 Entity List를 Dto로 변환 시에 ModelMapper를 이용하여 형변환, 전부 변경하지 않음
 
-8. JUnit 5.0
+9. JUnit 5.0
     - 테스트는 서비스단에서 테스트
 
-9. @ControllerAdvice
+10. @ControllerAdvice
     - 에러 처리는 하나의 클래스에서 처리하였으며 `ExceptionResponse.class`를 만들어 구조화된 에러처리
 
-10. RestController
+11. RestController
    -  `RestResponse<T>.class`를 만들어 구조화된 방식으로 Json 리턴
 
 ## DB 구조
